@@ -50,7 +50,7 @@ Türkiye'de çeşitli resmi verilere erişim sağlayan API'leri kullanan Android
 
 | Ana Sayfa | Sorgu Ekranı | Sonuçlar |
 |-----------|--------------|----------|
-| ![Main](main.jpg) | ![Query1](query1.jpg) | ![Query2](query2.jpg) |
+| ![Main](Main.jpg) | ![Query1](query1.jpg) | ![Query2](query2.jpg) |
 
 ## 👨‍💻 Geliştirici
 
