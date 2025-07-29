@@ -37,86 +37,43 @@ Türkiye'de çeşitli resmi verilere erişim sağlayan API'leri kullanan Android
 - **Export Özelliği** - TXT, JSON, CSV ve PDF formatlarında kayıt
 - **Bildirimler** - Sorgu sonuçları için anlık bildirim
 
-![App Icon](app-icon.png) <!-- Add your app icon if available -->
+## 📦 Kurulum
 
-Bu uygulama, çeşitli API'ler üzerinden TC kimlik numarası, ad-soyad, adres ve diğer kişisel bilgilerin sorgulanmasını sağlayan bir Android uygulamasıdır.
+```bash
+git clone https://github.com/Memati8383/ondex-api-android.git
+cd ondex-api-android
+```
 
-## Özellikler
+**Gereksinimler:**
+- Android Studio Arctic Fox veya üzeri
+- Android SDK 21+ (Lollipop)
+- Java 8+
 
-- **11 Farklı API Sorgulama Seçeneği**
-  - TC kimlik no ile sorgu
-  - Ad-Soyad-İl-İlçe ile sorgu
-  - Adres sorgulama
-  - Hane sorgulama
-  - Apartman sorgulama
-  - Sokak sorgulama
-  - Mahalle sorgulama
-  - Aile sorgusu
-  - Sülale sorgusu
-  - TC veya GSM ile sorgu
-  - İş yeri sorgusu
+## 🖼️ Ekran Görüntüleri
 
-- **Sonuçları Filtreleme**
-- **Sonuçları Dışa Aktarma (TXT, JSON, CSV, PDF)**
-- **Bildirim Sistemi**
-- **Kullanıcı Dostu Arayüz**
+| Ana Sayfa | Sorgu Ekranı | Sonuçlar |
+|-----------|--------------|----------|
+| ![Main](screenshots/main.png) | ![Query](screenshots/query.png) | ![Results](screenshots/results.png) |
 
-## Kurulum
+## 👨‍💻 Geliştirici
 
-1. Bu projeyi klonlayın:
-   ```bash
-   git clone https://github.com/Memati8383/ondex-api-android.git
-   ```
-2. Android Studio'da projeyi açın
-3. Gerekli bağımlılıklar otomatik olarak yüklenecektir
-4. Uygulamayı bir Android cihaz veya emülatörde çalıştırın
+[![GitHub](https://img.shields.io/badge/GitHub-Memati8383-black?logo=github)](https://github.com/Memati8383)
+[![Instagram](https://img.shields.io/badge/Instagram-ferit22901-E4405F?logo=instagram)](https://instagram.com/ferit22901)
+[![Email](https://img.shields.io/badge/Email-akdemirferit%40gmail.com-red?logo=gmail)](mailto:akdemirferit@gmail.com)
 
-## Kullanım
+## ⚖️ Lisans
 
-1. Ana menüden sorgulamak istediğiniz API'yi seçin
-2. Gerekli bilgileri girin (TC, ad-soyad, il-ilçe vb.)
-3. "Sorgula" butonuna basın
-4. Gelen sonuçları inceleyin
-5. İsterseniz sonuçları filtreleyebilir veya dışa aktarabilirsiniz
+```text
+MIT License
+Copyright (c) 2023 Ferit Akdemir
+```
 
-## Dışa Aktarma Seçenekleri
+## 🤝 Katkıda Bulunma
 
-Uygulama, sorgu sonuçlarını 4 farklı formatta dışa aktarabilir:
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/Memati8383/ondex-api-android/pulls)
 
-1. **TXT**: Okunabilir metin formatı
-2. **JSON**: Programatik kullanım için JSON formatı
-3. **CSV**: Excel gibi programlarda açılabilir CSV formatı
-4. **PDF**: Paylaşım için PDF belgesi
-
-## Ekran Görüntüleri
-
-<!-- Add screenshots of your app here -->
-![Main Screen](screenshots/main.png)
-![Query Screen](screenshots/query.png)
-![Results Screen](screenshots/results.png)
-
-## Gereksinimler
-
-- Android 5.0 (Lollipop) veya üzeri
-- İnternet bağlantısı (API'lere erişim için)
-
-## Geliştirici
-
-- **Ferit Akdemir**
-- Email: akdemirferit@gmail.com
-- GitHub: [Memati8383](https://github.com/Memati8383)
-- Instagram: [ferit22901](https://instagram.com/ferit22901)
-
-## Lisans
-
-Bu proje MIT lisansı altında lisanslanmıştır - detaylar için [LICENSE](LICENSE) dosyasına bakınız.
-
-## Katkıda Bulunma
-
-Katkılarınız memnuniyetle karşılanır. Lütfen önce bir konu açarak neyi değiştirmek istediğinizi tartışın.
-
-1. Forklayın
-2. Özellik dalınızı oluşturun (`git checkout -b feature/AmazingFeature`)
-3. Değişikliklerinizi commit edin (`git commit -m 'Add some AmazingFeature'`)
-4. Dalınıza push yapın (`git push origin feature/AmazingFeature`)
-5. Pull Request açın
+1. Forklayın (https://github.com/Memati8383/ondex-api-android/fork)
+2. Yeni branch oluşturun (`git checkout -b feature/awesome-feature`)
+3. Commit yapın (`git commit -am 'Add awesome feature'`)
+4. Push yapın (`git push origin feature/awesome-feature`)
+5. Yeni bir Pull Request oluşturun
