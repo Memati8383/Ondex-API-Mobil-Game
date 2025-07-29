@@ -48,7 +48,7 @@ Türkiye'de çeşitli resmi verilere erişim sağlayan API'leri kullanan Android
 
 ## 🖼️ Ekran Görüntüleri
 
-| Ana Sayfa | Sorgu Ekranı | Sonuçlar |
+| Ana Sayfa | Sorgu 1 Ekranı | Sorgu 2 Ekranı |
 |-----------|--------------|----------|
 | ![Main](Main.jpg) | ![Query1](query1.jpg) | ![Query2](query2.jpg) |
 
