@@ -62,5 +62,5 @@ Türkiye'de çeşitli resmi verilere erişim sağlayan API'leri kullanan Android
 
 ```text
 MIT License
-Copyright (c) 2023 Ferit Akdemir
+Copyright (c) 2025 Memati8383
 ```
