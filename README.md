@@ -3,9 +3,18 @@
 
 ![Android](https://img.shields.io/badge/Android-3DDC84?logo=android&logoColor=white)
 ![Java](https://img.shields.io/badge/Java-007396?logo=java&logoColor=white)
+![Android Studio](https://img.shields.io/badge/Android_Studio-3DDC84?logo=android-studio&logoColor=white)
+![Gradle](https://img.shields.io/badge/Gradle-02303A?logo=gradle&logoColor=white)
 ![API](https://img.shields.io/badge/API-11%20Endpoints-blue)
 ![Min SDK](https://img.shields.io/badge/Min%20SDK-21-orange)
+![Target SDK](https://img.shields.io/badge/Target%20SDK-33-yellow)
+![GitHub repo size](https://img.shields.io/github/repo-size/Memati8383/ondex-api-android)
+![GitHub last commit](https://img.shields.io/github/last-commit/Memati8383/ondex-api-android)
+![GitHub issues](https://img.shields.io/github/issues/Memati8383/ondex-api-android)
+![GitHub pull requests](https://img.shields.io/github/issues-pr/Memati8383/ondex-api-android)
 ![License](https://img.shields.io/badge/License-MIT-green)
+![GitHub stars](https://img.shields.io/github/stars/Memati8383/ondex-api-android?style=social)
+![GitHub forks](https://img.shields.io/github/forks/Memati8383/ondex-api-android?style=social)
 ![App Icon](app-icon.png)
 
 Türkiye'de çeşitli resmi verilere erişim sağlayan API'leri kullanan Android uygulaması.
