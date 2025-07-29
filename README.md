@@ -1,10 +1,11 @@
 # ONDEX API Sorgulama Uygulaması 🔍
 
-![Android](https://img.shields.io/badge/Android-3DDC84?logo=android&logoColor=white)
-![Kotlin](https://img.shields.io/badge/java-7F52FF?logo=java&logoColor=white)
-![API](https://img.shields.io/badge/API-11%20Endpoints-blue)
-![License](https://img.shields.io/badge/License-MIT-green)
 
+![Android](https://img.shields.io/badge/Android-3DDC84?logo=android&logoColor=white)
+![Java](https://img.shields.io/badge/Java-007396?logo=java&logoColor=white)
+![API](https://img.shields.io/badge/API-11%20Endpoints-blue)
+![Min SDK](https://img.shields.io/badge/Min%20SDK-21-orange)
+![License](https://img.shields.io/badge/License-MIT-green)
 ![App Icon](app-icon.png)
 
 Türkiye'de çeşitli resmi verilere erişim sağlayan API'leri kullanan Android uygulaması.
