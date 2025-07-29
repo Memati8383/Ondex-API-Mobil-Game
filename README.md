@@ -38,18 +38,6 @@ Türkiye'de çeşitli resmi verilere erişim sağlayan API'leri kullanan Android
 - **Export Özelliği** - TXT, JSON, CSV ve PDF formatlarında kayıt
 - **Bildirimler** - Sorgu sonuçları için anlık bildirim
 
-## 📦 Kurulum
-
-```bash
-git clone https://github.com/Memati8383/ondex-api-android.git
-cd ondex-api-android
-```
-
-**Gereksinimler:**
-- Android Studio Arctic Fox veya üzeri
-- Android SDK 21+ (Lollipop)
-- Java 8+
-
 ## 🖼️ Ekran Görüntüleri
 
 | Ana Sayfa | Sorgu Ekranı | Sonuçlar |
@@ -68,13 +56,3 @@ cd ondex-api-android
 MIT License
 Copyright (c) 2023 Ferit Akdemir
 ```
-
-## 🤝 Katkıda Bulunma
-
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/Memati8383/ondex-api-android/pulls)
-
-1. Forklayın (https://github.com/Memati8383/ondex-api-android/fork)
-2. Yeni branch oluşturun (`git checkout -b feature/awesome-feature`)
-3. Commit yapın (`git commit -am 'Add awesome feature'`)
-4. Push yapın (`git push origin feature/awesome-feature`)
-5. Yeni bir Pull Request oluşturun
