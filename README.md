@@ -1,7 +1,7 @@
 # ONDEX API Sorgulama Uygulaması 🔍
 
 ![Android](https://img.shields.io/badge/Android-3DDC84?logo=android&logoColor=white)
-![Kotlin](https://img.shields.io/badge/Kotlin-7F52FF?logo=kotlin&logoColor=white)
+![Kotlin](https://img.shields.io/badge/java-7F52FF?logo=java&logoColor=white)
 ![API](https://img.shields.io/badge/API-11%20Endpoints-blue)
 ![License](https://img.shields.io/badge/License-MIT-green)
 
