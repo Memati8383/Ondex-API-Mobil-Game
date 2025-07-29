@@ -1,1 +1,1070 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Ana Layout - Dikey LinearLayout olarak tanımlandı -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rootLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fafbfc"
+    android:orientation="vertical">
 
+    <!-- YATAY KAYDIRILABİLİR MENÜ BÖLÜMÜ -->
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="false"
+        android:scrollbars="none">
+
+        <!-- MENÜ BUTONLARINI İÇEREN LAYOUT -->
+        <LinearLayout
+            android:id="@+id/menuLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            android:elevation="4dp"
+            android:fitsSystemWindows="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="12dp"
+            android:paddingTop="?android:attr/actionBarSize">
+
+            <!-- TC SORGULA BUTONU -->
+            <Button
+                android:id="@+id/btnMenuApi1"
+                android:layout_width="120dp"
+                android:layout_height="40dp"
+                android:background="@drawable/rounded_button_grey"
+                android:text="TC"
+                android:textColor="#28313b" />
+
+            <!-- BUTONLAR ARASI BOŞLUK -->
+            <Space
+                android:layout_width="12dp"
+                android:layout_height="wrap_content" />
+
+            <!-- AD-SOYAD SORGULA BUTONU -->
+            <Button
+                android:id="@+id/btnMenuApi2"
+                android:layout_width="120dp"
+                android:layout_height="40dp"
+                android:background="@drawable/rounded_button_grey"
+                android:text="Ad - Soyad"
+                android:textColor="#28313b" />
+
+            <Space
+                android:layout_width="12dp"
+                android:layout_height="wrap_content" />
+
+            <!-- ADRES SORGULA BUTONU -->
+            <Button
+                android:id="@+id/btnMenuApi3"
+                android:layout_width="120dp"
+                android:layout_height="40dp"
+                android:background="@drawable/rounded_button_grey"
+                android:text="Adres Sorgu"
+                android:textColor="#28313b" />
+
+            <Space
+                android:layout_width="12dp"
+                android:layout_height="wrap_content" />
+
+            <!-- HANE SORGULA BUTONU -->
+            <Button
+                android:id="@+id/btnMenuApi4"
+                android:layout_width="120dp"
+                android:layout_height="40dp"
+                android:background="@drawable/rounded_button_grey"
+                android:text="Hane Sorgu"
+                android:textColor="#28313b" />
+
+            <Space
+                android:layout_width="12dp"
+                android:layout_height="wrap_content" />
+
+            <!-- APARTMAN SORGULA BUTONU -->
+            <Button
+                android:id="@+id/btnMenuApi5"
+                android:layout_width="120dp"
+                android:layout_height="40dp"
+                android:background="@drawable/rounded_button_grey"
+                android:text="Apartman Sorgu"
+                android:textColor="#28313b" />
+
+            <Space
+                android:layout_width="12dp"
+                android:layout_height="wrap_content" />
+
+            <!-- SOKAK SORGULA BUTONU -->
+            <Button
+                android:id="@+id/btnMenuApi6"
+                android:layout_width="120dp"
+                android:layout_height="40dp"
+                android:background="@drawable/rounded_button_grey"
+                android:text="Sokak Sorgu"
+                android:textColor="#28313b" />
+
+            <Space
+                android:layout_width="12dp"
+                android:layout_height="wrap_content" />
+
+            <!-- MAHALLE SORGULA BUTONU -->
+            <Button
+                android:id="@+id/btnMenuApi7"
+                android:layout_width="120dp"
+                android:layout_height="40dp"
+                android:background="@drawable/rounded_button_grey"
+                android:text="Mahalle Sorgu"
+                android:textColor="#28313b" />
+
+            <Space
+                android:layout_width="12dp"
+                android:layout_height="wrap_content" />
+
+            <!-- AİLE SORGULA BUTONU -->
+            <Button
+                android:id="@+id/btnMenuApi8"
+                android:layout_width="120dp"
+                android:layout_height="40dp"
+                android:background="@drawable/rounded_button_grey"
+                android:text="Aile Sorgu"
+                android:textColor="#28313b" />
+
+            <Space
+                android:layout_width="12dp"
+                android:layout_height="wrap_content" />
+
+            <!-- SÜLALE SORGULA BUTONU -->
+            <Button
+                android:id="@+id/btnMenuApi9"
+                android:layout_width="120dp"
+                android:layout_height="40dp"
+                android:background="@drawable/rounded_button_grey"
+                android:text="Sülale Sorgu"
+                android:textColor="#28313b" />
+
+            <Space
+                android:layout_width="12dp"
+                android:layout_height="wrap_content" />
+
+            <!-- TC/GSM SORGULA BUTONU -->
+            <Button
+                android:id="@+id/btnMenuApi10"
+                android:layout_width="120dp"
+                android:layout_height="40dp"
+                android:background="@drawable/rounded_button_grey"
+                android:text="TC / GSM Sorgu"
+                android:textColor="#28313b" />
+
+            <Space
+                android:layout_width="12dp"
+                android:layout_height="wrap_content" />
+
+            <!-- İŞYERİ SORGULA BUTONU -->
+            <Button
+                android:id="@+id/btnMenuApi11"
+                android:layout_width="120dp"
+                android:layout_height="40dp"
+                android:background="@drawable/rounded_button_grey"
+                android:text="İşyeri Sorgu"
+                android:textColor="#28313b" />
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <!-- ANA İÇERİK BÖLÜMÜ - KAYDIRILABİLİR -->
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <!-- API1 FORMU - TC İLE KİŞİ SORGULAMA -->
+            <LinearLayout
+                android:id="@+id/layoutApi1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <!-- BAŞLIK -->
+                <TextView
+                    android:id="@+id/tvApi1Baslik"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="4dp"
+                    android:background="#e1e8ee"
+                    android:elevation="2dp"
+                    android:gravity="center"
+                    android:paddingBottom="12dp"
+                    android:paddingTop="16dp"
+                    android:text="TC ile Kişi Sorgulama"
+                    android:textColor="#324968"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <!-- FİLTRELEME ALANI -->
+                <EditText
+                    android:id="@+id/etFilterApi1"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/filter_edittext"
+                    android:hint="Filtrele..."
+                    android:imeOptions="actionDone"
+                    android:inputType="text"
+                    android:padding="8dp"
+                    android:textColor="#000000"
+                    android:textSize="14sp" />
+
+                <!-- TC NO GİRİŞ ALANI -->
+                <EditText
+                    android:id="@+id/etTcApi1"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/rounded_edittext"
+                    android:hint="TC No"
+                    android:inputType="number"
+                    android:padding="12dp"
+                    android:textColor="#222222"
+                    android:textColorHint="#888888" />
+
+                <!-- SORGULA BUTONU -->
+                <Button
+                    android:id="@+id/btnFetchApi1"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@drawable/rounded_button_accent"
+                    android:elevation="4dp"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:text="Sorgula"
+                    android:textColor="#FFFFFF" />
+
+                <!-- AYIRICI ÇİZGİ -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="#ddd" />
+
+                <!-- SONUÇLARIN GÖSTERİLECEĞİ ALAN -->
+                <LinearLayout
+                    android:id="@+id/resultContainerApi1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+            </LinearLayout>
+
+            <!-- API2 FORMU - AD, SOYAD, İL VE İLÇE İLE SORGULAMA -->
+            <LinearLayout
+                android:id="@+id/layoutApi2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <!-- BAŞLIK -->
+                <TextView
+                    android:id="@+id/tvApi2Baslik"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="4dp"
+                    android:background="#e1e8ee"
+                    android:elevation="2dp"
+                    android:gravity="center"
+                    android:paddingBottom="12dp"
+                    android:paddingTop="16dp"
+                    android:text="Ad, Soyad, İl ve İlçe ile Sorgulama"
+                    android:textColor="#324968"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <!-- FİLTRELEME ALANI -->
+                <EditText
+                    android:id="@+id/etFilterApi2"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/filter_edittext"
+                    android:hint="Filtrele..."
+                    android:imeOptions="actionDone"
+                    android:inputType="text"
+                    android:padding="8dp"
+                    android:textColor="#000000"
+                    android:textSize="14sp" />
+
+                <!-- AD GİRİŞ ALANI -->
+                <EditText
+                    android:id="@+id/etAdApi2"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/rounded_edittext"
+                    android:hint="Ad"
+                    android:padding="12dp"
+                    android:textColor="#222222"
+                    android:textColorHint="#888888" />
+
+                <!-- SOYAD GİRİŞ ALANI -->
+                <EditText
+                    android:id="@+id/etSoyadApi2"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/rounded_edittext"
+                    android:hint="Soyad"
+                    android:padding="12dp"
+                    android:textColor="#222222"
+                    android:textColorHint="#888888" />
+
+                <!-- İL GİRİŞ ALANI -->
+                <EditText
+                    android:id="@+id/etIlApi2"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/rounded_edittext"
+                    android:hint="İl"
+                    android:padding="12dp"
+                    android:textColor="#222222"
+                    android:textColorHint="#888888" />
+
+                <!-- İLÇE GİRİŞ ALANI -->
+                <EditText
+                    android:id="@+id/etIlceApi2"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginBottom="12dp"
+                    android:background="@drawable/rounded_edittext"
+                    android:hint="İlçe"
+                    android:padding="12dp"
+                    android:textColor="#222222"
+                    android:textColorHint="#888888" />
+
+                <!-- SORGULA BUTONU -->
+                <Button
+                    android:id="@+id/btnFetchApi2"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@drawable/rounded_button_accent"
+                    android:text="Sorgula"
+                    android:textColor="#fff" />
+
+                <!-- AYIRICI ÇİZGİ -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="#ddd" />
+
+                <!-- SONUÇLARIN GÖSTERİLECEĞİ ALAN -->
+                <LinearLayout
+                    android:id="@+id/resultContainerApi2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+            </LinearLayout>
+
+            <!-- API3 FORMU - ADRES SORGULAMA -->
+            <LinearLayout
+                android:id="@+id/layoutApi3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <!-- BAŞLIK -->
+                <TextView
+                    android:id="@+id/tvApi3Baslik"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="4dp"
+                    android:background="#e1e8ee"
+                    android:elevation="2dp"
+                    android:gravity="center"
+                    android:paddingBottom="12dp"
+                    android:paddingTop="16dp"
+                    android:text="Adres Sorgu"
+                    android:textColor="#324968"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <!-- FİLTRELEME ALANI -->
+                <EditText
+                    android:id="@+id/etFilterApi3"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/filter_edittext"
+                    android:hint="Filtrele..."
+                    android:imeOptions="actionDone"
+                    android:inputType="text"
+                    android:padding="8dp"
+                    android:textColor="#000000"
+                    android:textSize="14sp" />
+
+                <!-- TC NO GİRİŞ ALANI -->
+                <EditText
+                    android:id="@+id/etTcApi3"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/rounded_edittext"
+                    android:hint="TC No"
+                    android:inputType="number"
+                    android:padding="12dp"
+                    android:textColor="#222222"
+                    android:textColorHint="#888888" />
+
+                <!-- SORGULA BUTONU -->
+                <Button
+                    android:id="@+id/btnFetchApi3"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@drawable/rounded_button_accent"
+                    android:text="Sorgula"
+                    android:textColor="#fff" />
+
+                <!-- AYIRICI ÇİZGİ -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="#ddd" />
+
+                <!-- SONUÇLARIN GÖSTERİLECEĞİ ALAN -->
+                <LinearLayout
+                    android:id="@+id/resultContainerApi3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+            </LinearLayout>
+
+            <!-- API4 FORMU - HANE SORGULAMA -->
+            <LinearLayout
+                android:id="@+id/layoutApi4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <!-- BAŞLIK -->
+                <TextView
+                    android:id="@+id/tvApi4Baslik"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="4dp"
+                    android:background="#e1e8ee"
+                    android:elevation="2dp"
+                    android:gravity="center"
+                    android:paddingBottom="12dp"
+                    android:paddingTop="16dp"
+                    android:text="Hane Sorgu"
+                    android:textColor="#324968"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <!-- FİLTRELEME ALANI -->
+                <EditText
+                    android:id="@+id/etFilterApi4"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/filter_edittext"
+                    android:hint="Filtrele..."
+                    android:imeOptions="actionDone"
+                    android:inputType="text"
+                    android:padding="8dp"
+                    android:textColor="#000000"
+                    android:textSize="14sp" />
+
+                <!-- TC NO GİRİŞ ALANI -->
+                <EditText
+                    android:id="@+id/etTcApi4"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/rounded_edittext"
+                    android:hint="TC No"
+                    android:inputType="number"
+                    android:padding="12dp"
+                    android:textColor="#222222"
+                    android:textColorHint="#888888" />
+
+                <!-- SORGULA BUTONU -->
+                <Button
+                    android:id="@+id/btnFetchApi4"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@drawable/rounded_button_accent"
+                    android:text="Sorgula"
+                    android:textColor="#fff" />
+
+                <!-- AYIRICI ÇİZGİ -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="#ddd" />
+
+                <!-- SONUÇLARIN GÖSTERİLECEĞİ ALAN -->
+                <LinearLayout
+                    android:id="@+id/resultContainerApi4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+            </LinearLayout>
+
+            <!-- API5 FORMU - APARTMAN SORGULAMA -->
+            <LinearLayout
+                android:id="@+id/layoutApi5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <!-- BAŞLIK -->
+                <TextView
+                    android:id="@+id/tvApi5Baslik"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="4dp"
+                    android:background="#e1e8ee"
+                    android:elevation="2dp"
+                    android:gravity="center"
+                    android:paddingBottom="12dp"
+                    android:paddingTop="16dp"
+                    android:text="Apartman Sorgu"
+                    android:textColor="#324968"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <!-- FİLTRELEME ALANI -->
+                <EditText
+                    android:id="@+id/etFilterApi5"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/filter_edittext"
+                    android:hint="Filtrele..."
+                    android:imeOptions="actionDone"
+                    android:inputType="text"
+                    android:padding="8dp"
+                    android:textColor="#000000"
+                    android:textSize="14sp" />
+
+                <!-- TC NO GİRİŞ ALANI -->
+                <EditText
+                    android:id="@+id/etTcApi5"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/rounded_edittext"
+                    android:hint="TC No"
+                    android:inputType="number"
+                    android:padding="12dp"
+                    android:textColor="#222222"
+                    android:textColorHint="#888888" />
+
+                <!-- SORGULA BUTONU -->
+                <Button
+                    android:id="@+id/btnFetchApi5"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@drawable/rounded_button_accent"
+                    android:text="Sorgula"
+                    android:textColor="#fff" />
+
+                <!-- AYIRICI ÇİZGİ -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="#ddd" />
+
+                <!-- SONUÇLARIN GÖSTERİLECEĞİ ALAN -->
+                <LinearLayout
+                    android:id="@+id/resultContainerApi5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+            </LinearLayout>
+
+            <!-- API6 FORMU - SOKAK SORGULAMA -->
+            <LinearLayout
+                android:id="@+id/layoutApi6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <!-- BAŞLIK -->
+                <TextView
+                    android:id="@+id/tvApi6Baslik"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="4dp"
+                    android:background="#e1e8ee"
+                    android:elevation="2dp"
+                    android:gravity="center"
+                    android:paddingBottom="12dp"
+                    android:paddingTop="16dp"
+                    android:text="Sokak Sorgu"
+                    android:textColor="#324968"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <!-- FİLTRELEME ALANI -->
+                <EditText
+                    android:id="@+id/etFilterApi6"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/filter_edittext"
+                    android:hint="Filtrele..."
+                    android:imeOptions="actionDone"
+                    android:inputType="text"
+                    android:padding="8dp"
+                    android:textColor="#000000"
+                    android:textSize="14sp" />
+
+                <!-- TC NO GİRİŞ ALANI -->
+                <EditText
+                    android:id="@+id/etTcApi6"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/rounded_edittext"
+                    android:hint="TC No"
+                    android:inputType="number"
+                    android:padding="12dp"
+                    android:textColor="#222222"
+                    android:textColorHint="#888888" />
+
+                <!-- SORGULA BUTONU -->
+                <Button
+                    android:id="@+id/btnFetchApi6"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@drawable/rounded_button_accent"
+                    android:text="Sorgula"
+                    android:textColor="#fff" />
+
+                <!-- AYIRICI ÇİZGİ -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="#ddd" />
+
+                <!-- SONUÇLARIN GÖSTERİLECEĞİ ALAN -->
+                <LinearLayout
+                    android:id="@+id/resultContainerApi6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+            </LinearLayout>
+
+            <!-- API7 FORMU - MAHALLE SORGULAMA -->
+            <LinearLayout
+                android:id="@+id/layoutApi7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <!-- BAŞLIK -->
+                <TextView
+                    android:id="@+id/tvApi7Baslik"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="4dp"
+                    android:background="#e1e8ee"
+                    android:elevation="2dp"
+                    android:gravity="center"
+                    android:paddingBottom="12dp"
+                    android:paddingTop="16dp"
+                    android:text="Mahalle Sorgu"
+                    android:textColor="#324968"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <!-- FİLTRELEME ALANI -->
+                <EditText
+                    android:id="@+id/etFilterApi7"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/filter_edittext"
+                    android:hint="Filtrele..."
+                    android:imeOptions="actionDone"
+                    android:inputType="text"
+                    android:padding="8dp"
+                    android:textColor="#000000"
+                    android:textSize="14sp" />
+
+                <!-- TC NO GİRİŞ ALANI -->
+                <EditText
+                    android:id="@+id/etTcApi7"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/rounded_edittext"
+                    android:hint="TC No"
+                    android:inputType="number"
+                    android:padding="12dp"
+                    android:textColor="#222222"
+                    android:textColorHint="#888888" />
+
+                <!-- SORGULA BUTONU -->
+                <Button
+                    android:id="@+id/btnFetchApi7"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@drawable/rounded_button_accent"
+                    android:text="Sorgula"
+                    android:textColor="#fff" />
+
+                <!-- AYIRICI ÇİZGİ -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="#ddd" />
+
+                <!-- SONUÇLARIN GÖSTERİLECEĞİ ALAN -->
+                <LinearLayout
+                    android:id="@+id/resultContainerApi7"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+            </LinearLayout>
+
+            <!-- API8 FORMU - AİLE SORGULAMA -->
+            <LinearLayout
+                android:id="@+id/layoutApi8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <!-- BAŞLIK -->
+                <TextView
+                    android:id="@+id/tvApi8Baslik"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="4dp"
+                    android:background="#e1e8ee"
+                    android:elevation="2dp"
+                    android:gravity="center"
+                    android:paddingBottom="12dp"
+                    android:paddingTop="16dp"
+                    android:text="Aile Sorgu"
+                    android:textColor="#324968"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <!-- FİLTRELEME ALANI -->
+                <EditText
+                    android:id="@+id/etFilterApi8"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/filter_edittext"
+                    android:hint="Filtrele..."
+                    android:imeOptions="actionDone"
+                    android:inputType="text"
+                    android:padding="8dp"
+                    android:textColor="#000000"
+                    android:textSize="14sp" />
+
+                <!-- TC NO GİRİŞ ALANI -->
+                <EditText
+                    android:id="@+id/etTcApi8"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/rounded_edittext"
+                    android:hint="TC No"
+                    android:inputType="number"
+                    android:padding="12dp"
+                    android:textColor="#222222"
+                    android:textColorHint="#888888" />
+
+                <!-- SORGULA BUTONU -->
+                <Button
+                    android:id="@+id/btnFetchApi8"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@drawable/rounded_button_accent"
+                    android:text="Sorgula"
+                    android:textColor="#fff" />
+
+                <!-- AYIRICI ÇİZGİ -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="#ddd" />
+
+                <!-- SONUÇLARIN GÖSTERİLECEĞİ ALAN -->
+                <LinearLayout
+                    android:id="@+id/resultContainerApi8"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+            </LinearLayout>
+
+            <!-- API9 FORMU - SÜLALE SORGULAMA -->
+            <LinearLayout
+                android:id="@+id/layoutApi9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <!-- BAŞLIK -->
+                <TextView
+                    android:id="@+id/tvApi9Baslik"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="4dp"
+                    android:background="#e1e8ee"
+                    android:elevation="2dp"
+                    android:gravity="center"
+                    android:paddingBottom="12dp"
+                    android:paddingTop="16dp"
+                    android:text="Sülale Sorgu"
+                    android:textColor="#324968"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <!-- FİLTRELEME ALANI -->
+                <EditText
+                    android:id="@+id/etFilterApi9"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/filter_edittext"
+                    android:hint="Filtrele..."
+                    android:imeOptions="actionDone"
+                    android:inputType="text"
+                    android:padding="8dp"
+                    android:textColor="#000000"
+                    android:textSize="14sp" />
+
+                <!-- TC NO GİRİŞ ALANI -->
+                <EditText
+                    android:id="@+id/etTcApi9"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/rounded_edittext"
+                    android:hint="TC No"
+                    android:inputType="number"
+                    android:padding="12dp"
+                    android:textColor="#222222"
+                    android:textColorHint="#888888" />
+
+                <!-- SORGULA BUTONU -->
+                <Button
+                    android:id="@+id/btnFetchApi9"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@drawable/rounded_button_accent"
+                    android:text="Sorgula"
+                    android:textColor="#fff" />
+
+                <!-- AYIRICI ÇİZGİ -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="#ddd" />
+
+                <!-- SONUÇLARIN GÖSTERİLECEĞİ ALAN -->
+                <LinearLayout
+                    android:id="@+id/resultContainerApi9"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+            </LinearLayout>
+
+            <!-- API10 FORMU - TC/GSM İLE SORGULAMA -->
+            <LinearLayout
+                android:id="@+id/layoutApi10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <!-- BAŞLIK -->
+                <TextView
+                    android:id="@+id/tvApi10Baslik"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="4dp"
+                    android:background="#e1e8ee"
+                    android:elevation="2dp"
+                    android:gravity="center"
+                    android:paddingBottom="12dp"
+                    android:paddingTop="16dp"
+                    android:text="TC veya GSM ile Sorgu"
+                    android:textColor="#324968"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <!-- FİLTRELEME ALANI -->
+                <EditText
+                    android:id="@+id/etFilterApi10"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/filter_edittext"
+                    android:hint="Filtrele..."
+                    android:imeOptions="actionDone"
+                    android:inputType="text"
+                    android:padding="8dp"
+                    android:textColor="#000000"
+                    android:textSize="14sp" />
+
+                <!-- TC/GSM NO GİRİŞ ALANI -->
+                <EditText
+                    android:id="@+id/etTcOrGsm"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/rounded_edittext"
+                    android:hint="TC No veya GSM No"
+                    android:inputType="number"
+                    android:padding="12dp"
+                    android:textColor="#222222"
+                    android:textColorHint="#888888" />
+
+                <!-- SORGULA BUTONU -->
+                <Button
+                    android:id="@+id/btnFetchApi10"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@drawable/rounded_button_accent"
+                    android:text="Sorgula"
+                    android:textColor="#fff" />
+
+                <!-- AYIRICI ÇİZGİ -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="#ddd" />
+
+                <!-- SONUÇLARIN GÖSTERİLECEĞİ ALAN -->
+                <LinearLayout
+                    android:id="@+id/resultContainerApi10"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+            </LinearLayout>
+
+            <!-- API11 FORMU - İŞYERİ SORGULAMA -->
+            <LinearLayout
+                android:id="@+id/layoutApi11"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <!-- BAŞLIK -->
+                <TextView
+                    android:id="@+id/tvApi11Baslik"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="4dp"
+                    android:background="#e1e8ee"
+                    android:elevation="2dp"
+                    android:gravity="center"
+                    android:paddingBottom="12dp"
+                    android:paddingTop="16dp"
+                    android:text="İşyeri Sorgu"
+                    android:textColor="#324968"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <!-- FİLTRELEME ALANI -->
+                <EditText
+                    android:id="@+id/etFilterApi11"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/filter_edittext"
+                    android:hint="Filtrele..."
+                    android:imeOptions="actionDone"
+                    android:inputType="text"
+                    android:padding="8dp"
+                    android:textColor="#000000"
+                    android:textSize="14sp" />
+
+                <!-- TC NO GİRİŞ ALANI -->
+                <EditText
+                    android:id="@+id/etTcApi11"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/rounded_edittext"
+                    android:hint="TC No"
+                    android:inputType="number"
+                    android:padding="12dp"
+                    android:textColor="#222222"
+                    android:textColorHint="#888888" />
+
+                <!-- SORGULA BUTONU -->
+                <Button
+                    android:id="@+id/btnFetchApi11"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@drawable/rounded_button_accent"
+                    android:text="Sorgula"
+                    android:textColor="#fff" />
+
+                <!-- AYIRICI ÇİZGİ -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="#ddd" />
+
+                <!-- SONUÇLARIN GÖSTERİLECEĞİ ALAN -->
+                <LinearLayout
+                    android:id="@+id/resultContainerApi11"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
