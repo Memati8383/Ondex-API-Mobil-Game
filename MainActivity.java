@@ -12,7 +12,9 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
+import android.content.res.Configuration;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -102,11 +104,16 @@ public class MainActivity extends Activity {
 	private LinearLayout resultContainerApi1, resultContainerApi2, resultContainerApi3, resultContainerApi4,
 			resultContainerApi5, resultContainerApi6, resultContainerApi7, resultContainerApi8, resultContainerApi9,
 			resultContainerApi10, resultContainerApi11;
+	private TextView tvApi1Baslik, tvApi2Baslik, tvApi3Baslik, tvApi4Baslik, tvApi5Baslik, tvApi6Baslik, tvApi7Baslik,
+			tvApi8Baslik, tvApi9Baslik, tvApi10Baslik, tvApi11Baslik;
 
 	// En son alınan API sonuçlarını tutan JSONArray ya da JSONObject değişkenleri
 	private JSONArray lastApi2Results, lastApi3Results, lastApi4Results, lastApi5Results, lastApi6Results,
 			lastApi7Results, lastApi8Results, lastApi9Results, lastApi10Results, lastApi11Results;
 	private JSONObject lastApi1Results;
+
+	private EditText etFilterApi1, etFilterApi2, etFilterApi3, etFilterApi4, etFilterApi5, etFilterApi6, etFilterApi7,
+			etFilterApi8, etFilterApi9, etFilterApi10, etFilterApi11;
 
 	private static final String CHANNEL_ID = "api_notifications_channel";
 
@@ -141,7 +148,7 @@ public class MainActivity extends Activity {
 			actionBar.setDisplayShowTitleEnabled(false);
 			// Geri butonunu göster ve tıklama olayına hazırla
 			actionBar.setDisplayHomeAsUpEnabled(true);
-			
+
 		}
 
 		// Butonlar (Ana menü butonları)
@@ -187,6 +194,30 @@ public class MainActivity extends Activity {
 		etTcApi9 = findViewById(R.id.etTcApi9);
 		etTcApi10 = findViewById(R.id.etTcOrGsm);
 		etTcApi11 = findViewById(R.id.etTcApi11);
+
+		etFilterApi1 = findViewById(R.id.etFilterApi1);
+		etFilterApi2 = findViewById(R.id.etFilterApi2);
+		etFilterApi3 = findViewById(R.id.etFilterApi3);
+		etFilterApi4 = findViewById(R.id.etFilterApi4);
+		etFilterApi5 = findViewById(R.id.etFilterApi5);
+		etFilterApi6 = findViewById(R.id.etFilterApi6);
+		etFilterApi7 = findViewById(R.id.etFilterApi7);
+		etFilterApi8 = findViewById(R.id.etFilterApi8);
+		etFilterApi9 = findViewById(R.id.etFilterApi9);
+		etFilterApi10 = findViewById(R.id.etFilterApi10);
+		etFilterApi11 = findViewById(R.id.etFilterApi11);
+
+		tvApi1Baslik = findViewById(R.id.tvApi1Baslik);
+		tvApi2Baslik = findViewById(R.id.tvApi2Baslik);
+		tvApi3Baslik = findViewById(R.id.tvApi3Baslik);
+		tvApi4Baslik = findViewById(R.id.tvApi4Baslik);
+		tvApi5Baslik = findViewById(R.id.tvApi5Baslik);
+		tvApi6Baslik = findViewById(R.id.tvApi6Baslik);
+		tvApi7Baslik = findViewById(R.id.tvApi7Baslik);
+		tvApi8Baslik = findViewById(R.id.tvApi8Baslik);
+		tvApi9Baslik = findViewById(R.id.tvApi9Baslik);
+		tvApi10Baslik = findViewById(R.id.tvApi10Baslik);
+		tvApi11Baslik = findViewById(R.id.tvApi11Baslik);
 
 		// Sorgu butonları (API isteklerini tetikleyen butonlar)
 		btnFetchApi1 = findViewById(R.id.btnFetchApi1);
@@ -1136,54 +1167,154 @@ public class MainActivity extends Activity {
 		return hsv;
 	}
 
-	// Menü seçenekleri oluşturulduğunda çağrılır
+	private String currentLang = "tr"; // Başlangıç dili
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Menü XML dosyasını menu nesnesine şişirir
 		getMenuInflater().inflate(R.menu.menu_main, menu);
 
-		// "action_more" ikonunu gri renge ayarla
-		MenuItem infoItem = menu.findItem(R.id.action_more);
-		Drawable infoDrawable = infoItem.getIcon();
-		if (infoDrawable != null) {
-			infoDrawable.mutate();
-			infoDrawable.setColorFilter(Color.GRAY, PorterDuff.Mode.SRC_IN);
-		}
+		int grayColor = Color.BLACK; // Gri renk
 
-		// "action_export" ikonunu gri renge ayarla
+		MenuItem moreItem = menu.findItem(R.id.action_more);
+		SpannableString moreTitle = new SpannableString(getLocalizedString("menu_more"));
+		moreTitle.setSpan(new ForegroundColorSpan(grayColor), 0, moreTitle.length(), 0);
+		moreItem.setTitle(moreTitle);
+
 		MenuItem exportItem = menu.findItem(R.id.action_export);
-		Drawable exportDrawable = exportItem.getIcon();
-		if (exportDrawable != null) {
-			exportDrawable.mutate();
-			exportDrawable.setColorFilter(Color.GRAY, PorterDuff.Mode.SRC_IN);
-		}
+		SpannableString exportTitle = new SpannableString(getLocalizedString("btn_export"));
+		exportTitle.setSpan(new ForegroundColorSpan(grayColor), 0, exportTitle.length(), 0);
+		exportItem.setTitle(exportTitle);
+
 		return true;
 	}
 
-	// Menü itemlerinden biri seçildiğinde çağrılır
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		View actionView = null;
-
-		// Eğer "action_more" seçildiyse bilgi dialogunu göster
-		if (item.getItemId() == R.id.action_more) {
-			actionView = findViewById(R.id.action_more); // Menüdeki view'u bul
-			showInfoDialog();
-		}
-		// Eğer "action_export" seçildiyse sonuçları dışa aktar
-		else if (item.getItemId() == R.id.action_export) {
-			actionView = findViewById(R.id.action_export);
-			exportResults();
-		}
-
-		// Bulunan actionView varsa butona animasyon uygula
+		View actionView = item.getActionView();
 		if (actionView != null) {
-			Animation anim = AnimationUtils.loadAnimation(this, R.anim.scale_up);
-			actionView.startAnimation(anim);
+			Animation bounce = AnimationUtils.loadAnimation(this, R.anim.bounce);
+			actionView.startAnimation(bounce);
 		}
+		switch (item.getItemId()) {
+		case R.id.menu_lang_tr:
+			currentLang = "tr";
+			applyStrings();
+			invalidateOptionsMenu();
+			return true;
 
-		// Üst sınıfın varsayılan davranışı çalıştırılır
-		return super.onOptionsItemSelected(item);
+		case R.id.menu_lang_en:
+			currentLang = "en";
+			applyStrings();
+			invalidateOptionsMenu();
+			return true;
+
+		case R.id.menu_lang_de:
+			currentLang = "de";
+			applyStrings();
+			invalidateOptionsMenu();
+			return true;
+
+		case R.id.action_more:
+			showInfoDialog();
+			return true;
+
+		case R.id.action_export:
+			exportResults();
+			return true;
+
+		default:
+			return super.onOptionsItemSelected(item);
+		}
+	}
+
+	private void applyStrings() {
+		// Menü Butonları
+		btnApi1.setText(getLocalizedString("menu_api1"));
+		btnApi2.setText(getLocalizedString("menu_api2"));
+		btnApi3.setText(getLocalizedString("menu_api3"));
+		btnApi4.setText(getLocalizedString("menu_api4"));
+		btnApi5.setText(getLocalizedString("menu_api5"));
+		btnApi6.setText(getLocalizedString("menu_api6"));
+		btnApi7.setText(getLocalizedString("menu_api7"));
+		btnApi8.setText(getLocalizedString("menu_api8"));
+		btnApi9.setText(getLocalizedString("menu_api9"));
+		btnApi10.setText(getLocalizedString("menu_api10"));
+		btnApi11.setText(getLocalizedString("menu_api11"));
+
+		// Sorgula Butonları
+		btnFetchApi1.setText(getLocalizedString("btn_query"));
+		btnFetchApi2.setText(getLocalizedString("btn_query"));
+		btnFetchApi3.setText(getLocalizedString("btn_query"));
+		btnFetchApi4.setText(getLocalizedString("btn_query"));
+		btnFetchApi5.setText(getLocalizedString("btn_query"));
+		btnFetchApi6.setText(getLocalizedString("btn_query"));
+		btnFetchApi7.setText(getLocalizedString("btn_query"));
+		btnFetchApi8.setText(getLocalizedString("btn_query"));
+		btnFetchApi9.setText(getLocalizedString("btn_query"));
+		btnFetchApi10.setText(getLocalizedString("btn_query"));
+		btnFetchApi11.setText(getLocalizedString("btn_query"));
+
+		// EditText Hint'leri
+		etTcApi1.setHint(getLocalizedString("hint_tc"));
+		etFilterApi1.setHint(getLocalizedString("hint_filter"));
+
+		etFilterApi2.setHint(getLocalizedString("hint_filter"));
+		etAdApi2.setHint(getLocalizedString("hint_name"));
+		etSoyadApi2.setHint(getLocalizedString("hint_surname"));
+		etIlApi2.setHint(getLocalizedString("hint_city"));
+		etIlceApi2.setHint(getLocalizedString("hint_district"));
+
+		etFilterApi3.setHint(getLocalizedString("hint_filter"));
+		etTcApi3.setHint(getLocalizedString("hint_tc"));
+
+		etFilterApi4.setHint(getLocalizedString("hint_filter"));
+		etTcApi4.setHint(getLocalizedString("hint_tc"));
+
+		etFilterApi5.setHint(getLocalizedString("hint_filter"));
+		etTcApi5.setHint(getLocalizedString("hint_tc"));
+
+		etFilterApi6.setHint(getLocalizedString("hint_filter"));
+		etTcApi6.setHint(getLocalizedString("hint_tc"));
+
+		etFilterApi7.setHint(getLocalizedString("hint_filter"));
+		etTcApi7.setHint(getLocalizedString("hint_tc"));
+
+		etFilterApi8.setHint(getLocalizedString("hint_filter"));
+		etTcApi8.setHint(getLocalizedString("hint_tc"));
+
+		etFilterApi9.setHint(getLocalizedString("hint_filter"));
+		etTcApi9.setHint(getLocalizedString("hint_tc"));
+
+		etFilterApi10.setHint(getLocalizedString("hint_filter"));
+		// Eğer etTcApi10 veya diğer EditText varsa onları da ekleyin
+		// etTcApi10.setHint(getLocalizedString("hint_tc"));
+
+		// Başlık TextView'lar
+		tvApi1Baslik.setText(getLocalizedString("result_title_api1"));
+		tvApi2Baslik.setText(getLocalizedString("result_title_api2"));
+		tvApi3Baslik.setText(getLocalizedString("menu_api3"));
+		tvApi4Baslik.setText(getLocalizedString("menu_api4"));
+		tvApi5Baslik.setText(getLocalizedString("menu_api5"));
+		tvApi6Baslik.setText(getLocalizedString("menu_api6"));
+		tvApi7Baslik.setText(getLocalizedString("menu_api7"));
+		tvApi8Baslik.setText(getLocalizedString("menu_api8"));
+		tvApi9Baslik.setText(getLocalizedString("menu_api9"));
+		tvApi10Baslik.setText(getLocalizedString("menu_api10"));
+		tvApi11Baslik.setText(getLocalizedString("menu_api11"));
+
+		// İsterseniz hata, bilgi, bildirim mesajları için de TextView veya Toast kullandığınız yerleri buraya ekleyebilirsiniz
+	}
+
+	private String getLocalizedString(String baseKey) {
+		int resId = getResources().getIdentifier(baseKey + "_" + currentLang, "string", getPackageName());
+		if (resId == 0) {
+			// Varsayılan dil Türkçe olsun
+			resId = getResources().getIdentifier(baseKey + "", "string", getPackageName());
+		}
+		if (resId == 0) {
+			return ""; // Bulunamazsa boş string
+		}
+		return getString(resId);
 	}
 
 	private void showInfoDialog() {
