@@ -35,15 +35,17 @@ Türkiye'de çeşitli resmi verilere erişim sağlayan API'leri kullanan Android
 
 ## 🚀 Özellikler
 
-![Feature](https://img.shields.io/badge/-11%20Farklı%20API%20Sorgusu-blue)
+![Feature](https://img.shields.io/badge/-11%20Farklı%20API%20Sorgusu-red)
 ![Feature](https://img.shields.io/badge/-Filtreleme%20Özelliği-orange)
 ![Feature](https://img.shields.io/badge/-4%20Formatta%20Dışa%20Aktarma-green)
 ![Feature](https://img.shields.io/badge/-Bildirim%20Sistemi-yellow)
+![Feature](https://img.shields.io/badge/-Çoklu%20Dil%20Desteği-blue)
 
 - **Çoklu API Desteği** - 11 farklı sorgu seçeneği
 - **Akıllı Filtreleme** - Sonuçlarda hızlı arama
 - **Export Özelliği** - TXT, JSON, CSV ve PDF formatlarında kayıt
 - **Bildirimler** - Sorgu sonuçları için anlık bildirim
+- **Çoklu Dil Desteği** - Çoklu Dil Desteği: Türkçe, İngilizce, Almanca
 
 ## 🖼️ Ekran Görüntüleri
 
