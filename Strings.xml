@@ -1,0 +1,198 @@
+<resources>
+
+    <!-- Uygulama Genel -->
+    <string name="app_name">ONDEX API</string>
+    <string name="app_name_en">ONDEX API</string>
+    <string name="app_name_de">ONDEX API</string>
+
+    <!-- Menü Öğeleri -->
+    <string name="menu_api1">TC</string>
+    <string name="menu_api1_en">ID</string>
+    <string name="menu_api1_de">Ausweis</string>
+    <string name="menu_api2">Ad - Soyad</string>
+    <string name="menu_api2_en">Name - Surname</string>
+    <string name="menu_api2_de">Vorname - Nachname</string>
+    <string name="menu_api3">Adres Sorgu</string>
+    <string name="menu_api3_en">Address Query</string>
+    <string name="menu_api3_de">Adressabfrage</string>
+    <string name="menu_api4">Hane Sorgu</string>
+    <string name="menu_api4_en">Household Query</string>
+    <string name="menu_api4_de">Haushaltsabfrage</string>
+    <string name="menu_api5">Apartman Sorgu</string>
+    <string name="menu_api5_en">Apartment Query</string>
+    <string name="menu_api5_de">Wohnungsabfrage</string>
+    <string name="menu_api6">Sokak Sorgu</string>
+    <string name="menu_api6_en">Street Query</string>
+    <string name="menu_api6_de">Straßenabfrage</string>
+    <string name="menu_api7">Mahalle Sorgu</string>
+    <string name="menu_api7_en">Neighborhood Query</string>
+    <string name="menu_api7_de">Stadtteilabfrage</string>
+    <string name="menu_api8">Aile Sorgu</string>
+    <string name="menu_api8_en">Family Query</string>
+    <string name="menu_api8_de">Familienabfrage</string>
+    <string name="menu_api9">Sülale Sorgu</string>
+    <string name="menu_api9_en">Clan Query</string>
+    <string name="menu_api9_de">Sippenabfrage</string>
+    <string name="menu_api10">TC / GSM Sorgu</string>
+    <string name="menu_api10_en">ID / Mobile Query</string>
+    <string name="menu_api10_de">Ausweis / Mobilabfrage</string>
+    <string name="menu_api11">İşyeri Sorgu</string>
+    <string name="menu_api11_en">Workplace Query</string>
+    <string name="menu_api11_de">Arbeitsplatzabfrage</string>
+
+    <!-- Giriş Alanları -->
+    <string name="hint_tc">TC Kimlik No</string>
+    <string name="hint_tc_en">ID Number</string>
+    <string name="hint_tc_de">Personalausweis</string>
+    <string name="hint_name">Ad</string>
+    <string name="hint_name_en">Name</string>
+    <string name="hint_name_de">Vorname</string>
+    <string name="hint_surname">Soyad</string>
+    <string name="hint_surname_en">Surname</string>
+    <string name="hint_surname_de">Nachname</string>
+    <string name="hint_city">İl</string>
+    <string name="hint_city_en">City</string>
+    <string name="hint_city_de">Stadt</string>
+    <string name="hint_district">İlçe</string>
+    <string name="hint_district_en">District</string>
+    <string name="hint_district_de">Bezirk</string>
+    <string name="hint_phone">Telefon</string>
+    <string name="hint_phone_en">Phone</string>
+    <string name="hint_phone_de">Telefon</string>
+
+    <!-- Butonlar -->
+    <string name="btn_query">Sorgula</string>
+    <string name="btn_query_en">Query</string>
+    <string name="btn_query_de">Abfrage</string>
+    <string name="btn_export">Dışa Aktar</string>
+    <string name="btn_export_en">Export</string>
+    <string name="btn_export_de">Exportieren</string>
+    <string name="btn_copy">Kopyala</string>
+    <string name="btn_copy_en">Copy</string>
+    <string name="btn_copy_de">Kopieren</string>
+
+    <!-- Hata Mesajları -->
+    <string name="error_no_data">Sonuç bulunamadı</string>
+    <string name="error_no_data_en">No results found</string>
+    <string name="error_no_data_de">Keine Ergebnisse gefunden</string>
+    <string name="error_invalid_input">Geçersiz giriş</string>
+    <string name="error_invalid_input_en">Invalid input</string>
+    <string name="error_invalid_input_de">Ungültige Eingabe</string>
+    <string name="error_network">Ağ hatası</string>
+    <string name="error_network_en">Network error</string>
+    <string name="error_network_de">Netzwerkfehler</string>
+
+    <!-- Bildirimler -->
+    <string name="notification_success">Sorgulama Başarılı</string>
+    <string name="notification_success_en">Query Successful</string>
+    <string name="notification_success_de">Abfrage erfolgreich</string>
+    <string name="notification_fail">Sorgulama Başarısız</string>
+    <string name="notification_fail_en">Query Failed</string>
+    <string name="notification_fail_de">Abfrage fehlgeschlagen</string>
+
+    <!-- Bilgi Mesajları -->
+    <string name="info_export_complete">Dışa aktarma tamamlandı</string>
+    <string name="info_export_complete_en">Export completed</string>
+    <string name="info_export_complete_de">Export abgeschlossen</string>
+    <string name="info_copied">Panoya kopyalandı</string>
+    <string name="info_copied_en">Copied to clipboard</string>
+    <string name="info_copied_de">In die Zwischenablage kopiert</string>
+
+    <!-- Dil Seçenekleri -->
+    <string name="language_turkish">Türkçe</string>
+    <string name="language_english">English</string>
+    <string name="language_german">Deutsch</string>
+
+    <!-- API Sonuç Başlıkları -->
+    <string name="result_name">Ad</string>
+    <string name="result_name_en">Name</string>
+    <string name="result_name_de">Vorname</string>
+    <string name="result_surname">Soyad</string>
+    <string name="result_surname_en">Surname</string>
+    <string name="result_surname_de">Nachname</string>
+    <string name="result_address">Adres</string>
+    <string name="result_address_en">Address</string>
+    <string name="result_address_de">Adresse</string>
+    <string name="result_phone">Telefon</string>
+    <string name="result_phone_en">Phone</string>
+    <string name="result_phone_de">Telefon</string>
+
+    <!-- Diyalog Başlıkları -->
+    <string name="dialog_title_info">Bilgi</string>
+    <string name="dialog_title_info_en">Information</string>
+    <string name="dialog_title_info_de">Information</string>
+    <string name="dialog_title_warning">Uyarı</string>
+    <string name="dialog_title_warning_en">Warning</string>
+    <string name="dialog_title_warning_de">Warnung</string>
+    <string name="dialog_title_error">Hata</string>
+    <string name="dialog_title_error_en">Error</string>
+    <string name="dialog_title_error_de">Fehler</string>
+
+    <!-- Dışa Aktarma Seçenekleri -->
+    <string name="export_format_txt">Metin Dosyası (TXT)</string>
+    <string name="export_format_txt_en">Text File (TXT)</string>
+    <string name="export_format_txt_de">Textdatei (TXT)</string>
+    <string name="export_format_pdf">PDF Dokümanı</string>
+    <string name="export_format_pdf_en">PDF Document</string>
+    <string name="export_format_pdf_de">PDF-Dokument</string>
+    <string name="export_format_csv">CSV Dosyası</string>
+    <string name="export_format_csv_en">CSV File</string>
+    <string name="export_format_csv_de">CSV-Datei</string>
+
+    <!-- Onay Mesajları -->
+    <string name="confirm_export">Dışa aktarmak istediğinize emin misiniz?</string>
+    <string name="confirm_export_en">Are you sure you want to export?</string>
+    <string name="confirm_export_de">Möchten Sie wirklich exportieren?</string>
+    <string name="confirm_exit">Çıkmak istediğinize emin misiniz?</string>
+    <string name="confirm_exit_en">Are you sure you want to exit?</string>
+    <string name="confirm_exit_de">Möchten Sie wirklich beenden?</string>
+
+    <!-- Filtre -->
+    <string name="hint_filter">Filtrele...</string>
+    <string name="hint_filter_en">Filter...</string>
+    <string name="hint_filter_de">Filtern...</string>
+
+    <!-- TC veya Telefon -->
+    <string name="hint_tc_or_phone">TC veya Telefon</string>
+    <string name="hint_tc_or_phone_en">ID or Phone</string>
+    <string name="hint_tc_or_phone_de">ID oder Telefon</string>
+  
+    <string name="result_title_api1">TC Sorgu Sonuçları</string>
+    <string name="result_title_api1_en">ID Query Results</string>
+    <string name="result_title_api1_de">ID Abfrageergebnisse</string>
+    <string name="result_title_api2">Ad Soyad Sorgu Sonuçları</string>
+    <string name="result_title_api2_en">Name Surname Query Results</string>
+    <string name="result_title_api2_de">Name Nachname Abfrageergebnisse</string>
+    <string name="result_title_api3">Adres Sorgu Sonuçları</string>
+    <string name="result_title_api3_en">Address Query Results</string>
+    <string name="result_title_api3_de">Adressabfrageergebnisse</string>
+    <string name="result_title_api4">Telefon Sorgu Sonuçları</string>
+    <string name="result_title_api4_en">Phone Query Results</string>
+    <string name="result_title_api4_de">Telefonabfrageergebnisse</string>
+    <string name="result_title_api5">Doğum Tarihi Sorgu Sonuçları</string>
+    <string name="result_title_api5_en">Birthdate Query Results</string>
+    <string name="result_title_api5_de">Geburtsdatum Abfrageergebnisse</string>
+    <string name="result_title_api6">E-posta Sorgu Sonuçları</string>
+    <string name="result_title_api6_en">Email Query Results</string>
+    <string name="result_title_api6_de">E-Mail Abfrageergebnisse</string>
+    <string name="result_title_api7">Meslek Sorgu Sonuçları</string>
+    <string name="result_title_api7_en">Occupation Query Results</string>
+    <string name="result_title_api7_de">Beruf Abfrageergebnisse</string>
+    <string name="result_title_api8">Şirket Sorgu Sonuçları</string>
+    <string name="result_title_api8_en">Company Query Results</string>
+    <string name="result_title_api8_de">Firmen Abfrageergebnisse</string>
+    <string name="result_title_api9">Vergi Numarası Sorgu Sonuçları</string>
+    <string name="result_title_api9_en">Tax Number Query Results</string>
+    <string name="result_title_api9_de">Steuernummer Abfrageergebnisse</string>
+    <string name="result_title_api10">Pasaport Sorgu Sonuçları</string>
+    <string name="result_title_api10_en">Passport Query Results</string>
+    <string name="result_title_api10_de">Reisepass Abfrageergebnisse</string>
+    <string name="result_title_api11">Araç Plaka Sorgu Sonuçları</string>
+    <string name="result_title_api11_en">Vehicle Plate Query Results</string>
+    <string name="result_title_api11_de">Fahrzeugkennzeichen Abfrageergebnisse</string>
+  
+    <string name="select_language_tr">Dil Seçiniz</string>
+    <string name="select_language_en">Select Language</string>
+    <string name="select_language_de">Sprache auswählen</string>
+
+</resources>
