@@ -14,7 +14,6 @@
 ![License](https://img.shields.io/badge/License-MIT-green)
 ![GitHub stars](https://img.shields.io/github/stars/Memati8383/Ondex-API-Mobil-Game?style=social)
 ![GitHub forks](https://img.shields.io/github/forks/Memati8383/Ondex-API-Mobil-Game?style=social)
-![App Icon](app-icon.png)
 
 Türkiye'de çeşitli resmi verilere erişim sağlayan API'leri kullanan Android uygulaması.
 
