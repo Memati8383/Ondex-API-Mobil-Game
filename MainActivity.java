@@ -1,81 +1,100 @@
 package com.my;
 
+// Android core and UI
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.Notification;
-import android.app.NotificationManager;
 import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.ActivityNotFoundException;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.content.res.ColorStateList;
 import android.content.res.Configuration;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
-import android.graphics.drawable.Drawable;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.RippleDrawable;
 import android.graphics.drawable.StateListDrawable;
 import android.graphics.pdf.PdfDocument;
+import android.media.MediaScannerConnection;
+import android.net.ConnectivityManager;
 import android.net.Network;
 import android.net.NetworkCapabilities;
 import android.net.NetworkInfo;
-import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
+import android.text.Html;
+import android.text.InputType;
 import android.text.Spannable;
 import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.TextPaint;
 import android.text.method.LinkMovementMethod;
-import android.text.Html;
-import android.text.style.StyleSpan;
+import android.text.style.ClickableSpan;
 import android.text.style.ForegroundColorSpan;
+import android.text.style.StyleSpan;
+import android.util.Base64;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
-import android.view.ViewGroup;
 import android.view.HapticFeedbackConstants;
-import android.view.MenuItem;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.webkit.WebView;
 import android.widget.*;
-import java.io.File;
 
-import java.io.IOException;
-import java.io.FileOutputStream;
-import java.io.OutputStream;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.text.SimpleDateFormat;
-import java.util.Locale;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
+// File and network operations
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+
+// Data and date handling
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
+import java.util.List;
+import java.util.Locale;
+
+// JSON handling
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class MainActivity extends Activity {
 
@@ -86,34 +105,38 @@ public class MainActivity extends Activity {
 	private Handler mainHandler = new Handler(Looper.getMainLooper());
 
 	// Butonlar (API çağrıları için)
-	private Button btnApi1, btnApi2, btnApi3, btnApi4, btnApi5, btnApi6, btnApi7, btnApi8, btnApi9, btnApi10, btnApi11;
+	private Button btnApi1, btnApi2, btnApi3, btnApi4, btnApi5, btnApi6, btnApi7, btnApi8, btnApi9, btnApi10, btnApi11,
+			btnApi12, btnApi13, btnApi14;
 
 	// API'ler için ayrı ayrı LinearLayout'lar (arayüz düzenleri)
 	private LinearLayout layoutApi1, layoutApi2, layoutApi3, layoutApi4, layoutApi5, layoutApi6, layoutApi7, layoutApi8,
-			layoutApi9, layoutApi10, layoutApi11;
+			layoutApi9, layoutApi10, layoutApi11, layoutApi12, layoutApi13, layoutApi14;
 
 	// API'lere özgü EditText alanları (kullanıcıdan veri girişi için)
 	private EditText etTcApi1, etAdApi2, etSoyadApi2, etIlApi2, etIlceApi2, etTcApi3, etTcApi4, etTcApi5, etTcApi6,
-			etTcApi7, etTcApi8, etTcApi9, etGsmApi9, etTcApi10, etTcApi11;
+			etTcApi7, etTcApi8, etTcApi9, etGsmApi9, etTcApi10, etTcApi11, etTcApi12, etTcApi13, etTcApi14;
 
 	// Sorgu butonları (API çağrılarını başlatmak için)
 	private Button btnFetchApi1, btnFetchApi2, btnFetchApi3, btnFetchApi4, btnFetchApi5, btnFetchApi6, btnFetchApi7,
-			btnFetchApi8, btnFetchApi9, btnFetchApi10, btnFetchApi11;
+			btnFetchApi8, btnFetchApi9, btnFetchApi10, btnFetchApi11, btnFetchApi12, btnFetchApi13, btnFetchApi14;
 
 	// API çağrısı sonuçlarının gösterileceği LinearLayout container'ları
 	private LinearLayout resultContainerApi1, resultContainerApi2, resultContainerApi3, resultContainerApi4,
 			resultContainerApi5, resultContainerApi6, resultContainerApi7, resultContainerApi8, resultContainerApi9,
-			resultContainerApi10, resultContainerApi11;
+			resultContainerApi10, resultContainerApi11, resultContainerApi12, resultContainerApi13,
+			resultContainerApi14;
+
 	private TextView tvApi1Baslik, tvApi2Baslik, tvApi3Baslik, tvApi4Baslik, tvApi5Baslik, tvApi6Baslik, tvApi7Baslik,
-			tvApi8Baslik, tvApi9Baslik, tvApi10Baslik, tvApi11Baslik;
+			tvApi8Baslik, tvApi9Baslik, tvApi10Baslik, tvApi11Baslik, tvApi12Baslik, tvApi13Baslik, tvApi14Baslik;
 
 	// En son alınan API sonuçlarını tutan JSONArray ya da JSONObject değişkenleri
 	private JSONArray lastApi2Results, lastApi3Results, lastApi4Results, lastApi5Results, lastApi6Results,
-			lastApi7Results, lastApi8Results, lastApi9Results, lastApi10Results, lastApi11Results;
+			lastApi7Results, lastApi8Results, lastApi9Results, lastApi10Results, lastApi11Results, lastApi12Results,
+			lastApi13Results, lastApi14Results;
 	private JSONObject lastApi1Results;
 
 	private EditText etFilterApi1, etFilterApi2, etFilterApi3, etFilterApi4, etFilterApi5, etFilterApi6, etFilterApi7,
-			etFilterApi8, etFilterApi9, etFilterApi10, etFilterApi11;
+			etFilterApi8, etFilterApi9, etFilterApi10, etFilterApi11, etFilterApi12, etFilterApi13, etFilterApi14;
 
 	private static final String CHANNEL_ID = "api_notifications_channel";
 
@@ -163,6 +186,9 @@ public class MainActivity extends Activity {
 		btnApi9 = findViewById(R.id.btnMenuApi9);
 		btnApi10 = findViewById(R.id.btnMenuApi10);
 		btnApi11 = findViewById(R.id.btnMenuApi11);
+		btnApi12 = findViewById(R.id.btnMenuApi12);
+		btnApi13 = findViewById(R.id.btnApi13);
+		btnApi14 = findViewById(R.id.btnMenuApi14);
 
 		// Layoutlar (Her API için ayrı layoutlar)
 		layoutApi1 = findViewById(R.id.layoutApi1);
@@ -176,6 +202,9 @@ public class MainActivity extends Activity {
 		layoutApi9 = findViewById(R.id.layoutApi9);
 		layoutApi10 = findViewById(R.id.layoutApi10);
 		layoutApi11 = findViewById(R.id.layoutApi11);
+		layoutApi12 = findViewById(R.id.layoutApi12);
+		layoutApi13 = findViewById(R.id.layoutApi13);
+		layoutApi14 = findViewById(R.id.layoutApi14);
 
 		// EditTextler (Kullanıcıdan veri alınan alanlar)
 		etTcApi1 = findViewById(R.id.etTcApi1);
@@ -194,6 +223,9 @@ public class MainActivity extends Activity {
 		etTcApi9 = findViewById(R.id.etTcApi9);
 		etTcApi10 = findViewById(R.id.etTcOrGsm);
 		etTcApi11 = findViewById(R.id.etTcApi11);
+		etTcApi12 = findViewById(R.id.etTcApi12);
+		etTcApi13 = findViewById(R.id.etTcApi13);
+		etTcApi14 = findViewById(R.id.etTcApi14);
 
 		etFilterApi1 = findViewById(R.id.etFilterApi1);
 		etFilterApi2 = findViewById(R.id.etFilterApi2);
@@ -206,6 +238,9 @@ public class MainActivity extends Activity {
 		etFilterApi9 = findViewById(R.id.etFilterApi9);
 		etFilterApi10 = findViewById(R.id.etFilterApi10);
 		etFilterApi11 = findViewById(R.id.etFilterApi11);
+		etFilterApi12 = findViewById(R.id.etFilterApi12);
+		etFilterApi13 = findViewById(R.id.etFilterApi13);
+		etFilterApi14 = findViewById(R.id.etFilterApi14);
 
 		tvApi1Baslik = findViewById(R.id.tvApi1Baslik);
 		tvApi2Baslik = findViewById(R.id.tvApi2Baslik);
@@ -218,6 +253,9 @@ public class MainActivity extends Activity {
 		tvApi9Baslik = findViewById(R.id.tvApi9Baslik);
 		tvApi10Baslik = findViewById(R.id.tvApi10Baslik);
 		tvApi11Baslik = findViewById(R.id.tvApi11Baslik);
+		tvApi12Baslik = findViewById(R.id.tvApi12Baslik);
+		tvApi13Baslik = findViewById(R.id.tvApi13Baslik);
+		tvApi14Baslik = findViewById(R.id.tvApi14Baslik);
 
 		// Sorgu butonları (API isteklerini tetikleyen butonlar)
 		btnFetchApi1 = findViewById(R.id.btnFetchApi1);
@@ -231,6 +269,9 @@ public class MainActivity extends Activity {
 		btnFetchApi9 = findViewById(R.id.btnFetchApi9);
 		btnFetchApi10 = findViewById(R.id.btnFetchApi10);
 		btnFetchApi11 = findViewById(R.id.btnFetchApi11);
+		btnFetchApi12 = findViewById(R.id.btnFetchApi12);
+		btnFetchApi13 = findViewById(R.id.btnFetchApi13);
+		btnFetchApi14 = findViewById(R.id.btnFetchApi14);
 
 		// Sonuç konteynerleri (API sonuçlarının gösterileceği alanlar)
 		resultContainerApi1 = findViewById(R.id.resultContainerApi1);
@@ -244,6 +285,9 @@ public class MainActivity extends Activity {
 		resultContainerApi9 = findViewById(R.id.resultContainerApi9);
 		resultContainerApi10 = findViewById(R.id.resultContainerApi10);
 		resultContainerApi11 = findViewById(R.id.resultContainerApi11);
+		resultContainerApi12 = findViewById(R.id.resultContainerApi12);
+		resultContainerApi13 = findViewById(R.id.resultContainerApi13);
+		resultContainerApi14 = findViewById(R.id.resultContainerApi14);
 
 		// ScrollView bileşenini tanımla
 		scrollView = findViewById(R.id.scrollView);
@@ -317,6 +361,21 @@ public class MainActivity extends Activity {
 			showApiLayout(layoutApi11);
 		});
 
+		// btnApi12 butonuna tıklanınca animasyon başlatılır ve ilgili layout gösterilir
+		btnApi12.setOnClickListener(v -> {
+			v.startAnimation(clickAnim);
+			showApiLayout(layoutApi12);
+		});
+
+		btnApi13.setOnClickListener(v -> {
+			v.startAnimation(clickAnim);
+			showApiLayout(layoutApi13);
+		});
+		btnApi14.setOnClickListener(v -> {
+			v.startAnimation(clickAnim);
+			showApiLayout(layoutApi14);
+		});
+
 		// Başlangıçta tüm API layoutlarını gizle
 		hideAllApiLayouts();
 
@@ -333,14 +392,14 @@ public class MainActivity extends Activity {
 				return;
 			}
 			try {
-				String apiUrl = "https://api.ondex.uk/ondexapi/tcprosorgu.php?tc=" + URLEncoder.encode(tc, "UTF-8");
+				String apiUrl = "https://api.hexnox.pro/sowixapi/tcpro.php?tc=" + URLEncoder.encode(tc, "UTF-8");
 				fetchApi(apiUrl, resultContainerApi1, new ApiResultHandler() {
 					@Override
 					public void onSuccess(String jsonStr, LinearLayout container) {
 						try {
 							JSONObject json = new JSONObject(jsonStr);
-							if (json.has("Veri")) {
-								JSONObject veri = json.getJSONObject("Veri");
+							if (json.has("data")) {
+								JSONObject veri = json.getJSONObject("data");
 								lastApi1Results = veri;
 								JSONArray arr = new JSONArray();
 								arr.put(veri);
@@ -381,22 +440,38 @@ public class MainActivity extends Activity {
 			Animation anim = AnimationUtils.loadAnimation(this, R.anim.bounce);
 			v.startAnimation(anim);
 
-			if (ad.isEmpty() || soyad.isEmpty() || il.isEmpty() || ilce.isEmpty()) {
-				showToast("Ad, Soyad, İl ve İlçe giriniz");
+			// Ad ve soyad mutlaka gerekli
+			if (ad.isEmpty() || soyad.isEmpty()) {
+				showToast("Ad ve Soyad giriniz");
 				return;
 			}
+
 			try {
-				String apiUrl = "http://api.ondex.uk/ondexapi/adsoyadprosorgu.php?ad=" + URLEncoder.encode(ad, "UTF-8")
-						+ "&soyad=" + URLEncoder.encode(soyad, "UTF-8") + "&il=" + URLEncoder.encode(il, "UTF-8")
-						+ "&ilce=" + URLEncoder.encode(ilce, "UTF-8");
+				// Temel API adresi
+				StringBuilder apiUrlBuilder = new StringBuilder("https://api.hexnox.pro/sowixapi/adsoyadilce.php?");
+				apiUrlBuilder.append("ad=").append(URLEncoder.encode(ad, "UTF-8"));
+				apiUrlBuilder.append("&soyad=").append(URLEncoder.encode(soyad, "UTF-8"));
+
+				// İl girilmişse ekle
+				if (!il.isEmpty()) {
+					apiUrlBuilder.append("&il=").append(URLEncoder.encode(il, "UTF-8"));
+				}
+
+				// İlçe girilmişse ekle
+				if (!ilce.isEmpty()) {
+					apiUrlBuilder.append("&ilce=").append(URLEncoder.encode(ilce, "UTF-8"));
+				}
+
+				String apiUrl = apiUrlBuilder.toString();
+
 				fetchApi(apiUrl, resultContainerApi2, new ApiResultHandler() {
 
 					@Override
 					public void onSuccess(String jsonStr, LinearLayout container) {
 						try {
 							JSONObject json = new JSONObject(jsonStr);
-							if (json.has("Veri")) {
-								JSONArray arr = json.getJSONArray("Veri");
+							if (json.optBoolean("success")) {
+								JSONArray arr = json.getJSONArray("data");
 								lastApi2Results = arr;
 								String filter = etFilterApi2.getText().toString().trim();
 								showFilteredResults(arr, container, filter);
@@ -439,14 +514,14 @@ public class MainActivity extends Activity {
 				return;
 			}
 			try {
-				String apiUrl = "https://api.ondex.uk/ondexapi/adressorgu.php?tc=" + URLEncoder.encode(tc, "UTF-8");
+				String apiUrl = "https://api.hexnox.pro/sowixapi/adres.php?tc=" + URLEncoder.encode(tc, "UTF-8");
 				fetchApi(apiUrl, resultContainerApi3, new ApiResultHandler() {
 					@Override
 					public void onSuccess(String jsonStr, LinearLayout container) {
 						try {
 							JSONObject json = new JSONObject(jsonStr);
-							if (json.has("Veri")) {
-								JSONObject veri = json.getJSONObject("Veri");
+							if (json.has("data")) {
+								JSONObject veri = json.getJSONObject("data");
 								JSONArray arr = new JSONArray();
 								arr.put(veri); // JSONObject'i JSONArray'e çeviriyoruz
 
@@ -490,14 +565,14 @@ public class MainActivity extends Activity {
 				return;
 			}
 			try {
-				String apiUrl = "http://api.ondex.uk/ondexapi/hanesorgu.php?tc=" + URLEncoder.encode(tc, "UTF-8");
+				String apiUrl = "https://api.hexnox.pro/sowixapi/hane.php?tc=" + URLEncoder.encode(tc, "UTF-8");
 				fetchApi(apiUrl, resultContainerApi4, new ApiResultHandler() {
 					@Override
 					public void onSuccess(String jsonStr, LinearLayout container) {
 						try {
 							JSONObject json = new JSONObject(jsonStr);
-							if (json.has("Veri")) {
-								JSONArray arr = json.getJSONArray("Veri");
+							if (json.has("results")) {
+								JSONArray arr = json.getJSONArray("results");
 								lastApi4Results = arr;
 								String filter = etFilterApi4.getText().toString().trim();
 								showFilteredResults(arr, container, filter);
@@ -525,7 +600,7 @@ public class MainActivity extends Activity {
 			}
 		});
 
-		// API5 - apartman sorgu
+		// API5 - okul no sorgu
 		btnFetchApi5.setOnClickListener(v -> {
 			String tc = etTcApi5.getText().toString().trim();
 			EditText etFilterApi5 = findViewById(R.id.etFilterApi5);
@@ -537,27 +612,35 @@ public class MainActivity extends Activity {
 				showToast("TC giriniz");
 				return;
 			}
+
 			try {
-				String apiUrl = "https://api.ondex.uk/ondexapi/apartmansorgu.php?tc=" + URLEncoder.encode(tc, "UTF-8");
+				String apiUrl = "https://api.hexnox.pro/sowixapi/okulno.php?tc=" + URLEncoder.encode(tc, "UTF-8");
 				fetchApi(apiUrl, resultContainerApi5, new ApiResultHandler() {
 					@Override
 					public void onSuccess(String jsonStr, LinearLayout container) {
 						try {
 							JSONObject json = new JSONObject(jsonStr);
-							if (json.has("Veri")) {
-								JSONArray arr = json.getJSONArray("Veri");
-								lastApi5Results = arr;
-								String filter = etFilterApi5.getText().toString().trim();
-								showFilteredResults(arr, container, filter);
-								sendNotification("Apartman Sorgulama Başarılı", arr.length() + " kayıt bulundu.", 5001);
+							if (json.optBoolean("success", false)) {
+								JSONArray arr = json.optJSONArray("data");
+								if (arr != null && arr.length() > 0) {
+									lastApi5Results = arr;
+									String filter = etFilterApi5.getText().toString().trim();
+									showFilteredResults(arr, container, filter);
+									sendNotification("Okul No Sorgu Başarılı", arr.length() + " kayıt bulundu.", 5001);
+								} else {
+									addErrorMessage(container, "Sonuç bulunamadı.");
+									lastApi5Results = null;
+									sendNotification("Okul No Sorgu Sonuç Yok", "Kayıt bulunamadı.", 5002);
+								}
 							} else {
-								addErrorMessage(container, "Sonuç bulunamadı.");
+								String msg = json.optString("message", "Sorgu başarısız.");
+								addErrorMessage(container, msg);
 								lastApi5Results = null;
-								sendNotification("Apartman Sorgu Sonuç Yok", "Kayıt bulunamadı.", 5002);
+								sendNotification("Okul No Sorgu Başarısız", msg, 5003);
 							}
 						} catch (Exception e) {
 							addErrorMessage(container, "JSON parse hatası: " + e.getMessage());
-							sendNotification("Apartman JSON Hatası", e.getMessage(), 5003);
+							sendNotification("Okul No JSON Hatası", e.getMessage(), 5004);
 						}
 					}
 
@@ -565,7 +648,7 @@ public class MainActivity extends Activity {
 					public void onError(String errorMessage, LinearLayout container) {
 						addErrorMessage(container, errorMessage);
 						lastApi5Results = null;
-						sendNotification("Apartman Sorgu Hatası", errorMessage, 5004);
+						sendNotification("Okul No Sorgu Hatası", errorMessage, 5005);
 					}
 				});
 			} catch (UnsupportedEncodingException e) {
@@ -573,7 +656,7 @@ public class MainActivity extends Activity {
 			}
 		});
 
-		// API6 - sokak sorgu
+		// API6 - işyeri sorgu
 		btnFetchApi6.setOnClickListener(v -> {
 			String tc = etTcApi6.getText().toString().trim();
 			EditText etFilterApi6 = findViewById(R.id.etFilterApi6);
@@ -585,27 +668,37 @@ public class MainActivity extends Activity {
 				showToast("TC giriniz");
 				return;
 			}
+
 			try {
-				String apiUrl = "https://api.ondex.uk/ondexapi/sokaksorgu.php?tc=" + URLEncoder.encode(tc, "UTF-8");
+				String apiUrl = "https://api.hexnox.pro/sowixapi/isyeri.php?tc=" + URLEncoder.encode(tc, "UTF-8");
 				fetchApi(apiUrl, resultContainerApi6, new ApiResultHandler() {
 					@Override
 					public void onSuccess(String jsonStr, LinearLayout container) {
 						try {
 							JSONObject json = new JSONObject(jsonStr);
-							if (json.has("Veri")) {
-								JSONArray arr = json.getJSONArray("Veri");
-								lastApi6Results = arr;
-								String filter = etFilterApi6.getText().toString().trim();
-								showFilteredResults(arr, container, filter);
-								sendNotification("Sokak Sorgulama Başarılı", arr.length() + " kayıt bulundu.", 6001);
+							if (json.optBoolean("success", false)) {
+								JSONArray arr = json.optJSONArray("data");
+								if (arr != null && arr.length() > 0) {
+									lastApi6Results = arr;
+									String filter = etFilterApi6.getText().toString().trim();
+									showFilteredResults(arr, container, filter);
+									sendNotification("İşyeri Sorgulama Başarılı", arr.length() + " kayıt bulundu.",
+											6001);
+								} else {
+									String msg = json.optString("message", "Sonuç bulunamadı.");
+									addErrorMessage(container, msg);
+									lastApi6Results = null;
+									sendNotification("İşyeri Sorgu Sonuç Yok", msg, 6002);
+								}
 							} else {
-								addErrorMessage(container, "Sonuç bulunamadı.");
+								String msg = json.optString("message", "Sorgu başarısız.");
+								addErrorMessage(container, msg);
 								lastApi6Results = null;
-								sendNotification("Sokak Sorgu Sonuç Yok", "Kayıt bulunamadı.", 6002);
+								sendNotification("İşyeri Sorgu Başarısız", msg, 6003);
 							}
 						} catch (Exception e) {
 							addErrorMessage(container, "JSON parse hatası: " + e.getMessage());
-							sendNotification("Sokak JSON Hatası", e.getMessage(), 6003);
+							sendNotification("İşyeri JSON Hatası", e.getMessage(), 6004);
 						}
 					}
 
@@ -613,7 +706,7 @@ public class MainActivity extends Activity {
 					public void onError(String errorMessage, LinearLayout container) {
 						addErrorMessage(container, errorMessage);
 						lastApi6Results = null;
-						sendNotification("Sokak Sorgu Hatası", errorMessage, 6004);
+						sendNotification("İşyeri Sorgu Hatası", errorMessage, 6005);
 					}
 				});
 			} catch (UnsupportedEncodingException e) {
@@ -621,39 +714,48 @@ public class MainActivity extends Activity {
 			}
 		});
 
-		// API7 - mahalle sorgu
+		// API7 - GSM Detay sorgu
 		btnFetchApi7.setOnClickListener(v -> {
-			String tc = etTcApi7.getText().toString().trim();
+			String gsm = etTcApi7.getText().toString().trim();
 			EditText etFilterApi7 = findViewById(R.id.etFilterApi7);
 
 			Animation anim = AnimationUtils.loadAnimation(this, R.anim.bounce);
 			v.startAnimation(anim);
 
-			if (tc.isEmpty()) {
-				showToast("TC giriniz");
+			if (gsm.isEmpty()) {
+				showToast("GSM giriniz");
 				return;
 			}
+
 			try {
-				String apiUrl = "https://api.ondex.uk/ondexapi/mahallesorgu.php?tc=" + URLEncoder.encode(tc, "UTF-8");
+				String apiUrl = "https://api.hexnox.pro/sowixapi/gsmdetay.php?gsm=" + URLEncoder.encode(gsm, "UTF-8");
 				fetchApi(apiUrl, resultContainerApi7, new ApiResultHandler() {
 					@Override
 					public void onSuccess(String jsonStr, LinearLayout container) {
 						try {
 							JSONObject json = new JSONObject(jsonStr);
-							if (json.has("Veri")) {
-								JSONArray arr = json.getJSONArray("Veri");
-								lastApi7Results = arr;
-								String filter = etFilterApi7.getText().toString().trim();
-								showFilteredResults(arr, container, filter);
-								sendNotification("Mahalle Sorgulama Başarılı", arr.length() + " kayıt bulundu.", 7001);
+							if (json.optBoolean("success", false)) {
+								JSONArray arr = json.optJSONArray("data");
+								if (arr != null && arr.length() > 0) {
+									lastApi7Results = arr;
+									String filter = etFilterApi7.getText().toString().trim();
+									showFilteredResults(arr, container, filter);
+									sendNotification("GSM Detay Sorgu Başarılı", arr.length() + " kayıt bulundu.",
+											7001);
+								} else {
+									addErrorMessage(container, "Sonuç bulunamadı.");
+									lastApi7Results = null;
+									sendNotification("GSM Detay Sorgu Sonuç Yok", "Kayıt bulunamadı.", 7002);
+								}
 							} else {
-								addErrorMessage(container, "Sonuç bulunamadı.");
+								String msg = json.optString("message", "Sorgu başarısız.");
+								addErrorMessage(container, msg);
 								lastApi7Results = null;
-								sendNotification("Mahalle Sorgu Sonuç Yok", "Kayıt bulunamadı.", 7002);
+								sendNotification("GSM Detay Sorgu Başarısız", msg, 7003);
 							}
 						} catch (Exception e) {
 							addErrorMessage(container, "JSON parse hatası: " + e.getMessage());
-							sendNotification("Mahalle JSON Hatası", e.getMessage(), 7003);
+							sendNotification("GSM Detay JSON Hatası", e.getMessage(), 7004);
 						}
 					}
 
@@ -661,7 +763,7 @@ public class MainActivity extends Activity {
 					public void onError(String errorMessage, LinearLayout container) {
 						addErrorMessage(container, errorMessage);
 						lastApi7Results = null;
-						sendNotification("Mahalle Sorgu Hatası", errorMessage, 7004);
+						sendNotification("GSM Detay Sorgu Hatası", errorMessage, 7005);
 					}
 				});
 			} catch (UnsupportedEncodingException e) {
@@ -682,14 +784,14 @@ public class MainActivity extends Activity {
 				return;
 			}
 			try {
-				String apiUrl = "https://api.ondex.uk/ondexapi/aileprosorgu.php?tc=" + URLEncoder.encode(tc, "UTF-8");
+				String apiUrl = "https://api.hexnox.pro/sowixapi/aile.php?tc=" + URLEncoder.encode(tc, "UTF-8");
 				fetchApi(apiUrl, resultContainerApi8, new ApiResultHandler() {
 					@Override
 					public void onSuccess(String jsonStr, LinearLayout container) {
 						try {
 							JSONObject json = new JSONObject(jsonStr);
-							if (json.has("Veri")) {
-								JSONArray arr = json.getJSONArray("Veri");
+							if (json.has("data")) {
+								JSONArray arr = json.getJSONArray("data");
 								lastApi8Results = arr;
 								String filter = etFilterApi8.getText().toString().trim();
 								showFilteredResults(arr, container, filter);
@@ -730,14 +832,14 @@ public class MainActivity extends Activity {
 				return;
 			}
 			try {
-				String apiUrl = "http://api.ondex.uk/ondexapi/sulaleprosorgu.php?tc=" + URLEncoder.encode(tc, "UTF-8");
+				String apiUrl = "https://api.hexnox.pro/sowixapi/sulale.php?tc=" + URLEncoder.encode(tc, "UTF-8");
 				fetchApi(apiUrl, resultContainerApi9, new ApiResultHandler() {
 					@Override
 					public void onSuccess(String jsonStr, LinearLayout container) {
 						try {
 							JSONObject json = new JSONObject(jsonStr);
-							if (json.has("Veri")) {
-								JSONArray arr = json.getJSONArray("Veri");
+							if (json.has("data")) {
+								JSONArray arr = json.getJSONArray("data");
 								lastApi9Results = arr;
 								String filter = etFilterApi9.getText().toString().trim();
 								showFilteredResults(arr, container, filter);
@@ -780,25 +882,32 @@ public class MainActivity extends Activity {
 			try {
 				String apiUrl;
 				if (input.matches("\\d{11}")) { // Eğer 11 haneli rakamsa TC olarak kabul et
-					apiUrl = "http://api.ondex.uk/ondexapi/tcgsmsorgu.php?tc=" + URLEncoder.encode(input, "UTF-8");
+					apiUrl = "https://api.hexnox.pro/sowixapi/tcgsm.php?tc=" + URLEncoder.encode(input, "UTF-8");
 				} else {
-					apiUrl = "http://api.ondex.uk/ondexapi/gsmtcsorgu.php?gsm=" + URLEncoder.encode(input, "UTF-8");
+					apiUrl = "https://api.hexnox.pro/sowixapi/gsm.php?gsm=" + URLEncoder.encode(input, "UTF-8");
 				}
 				fetchApi(apiUrl, resultContainerApi10, new ApiResultHandler() {
 					@Override
 					public void onSuccess(String jsonStr, LinearLayout container) {
 						try {
 							JSONObject json = new JSONObject(jsonStr);
-							if (json.has("Veri")) {
-								JSONArray arr = json.getJSONArray("Veri");
-								lastApi10Results = arr;
-								String filter = etFilterApi10.getText().toString().trim();
-								showFilteredResults(arr, container, filter);
-								sendNotification("TC veya GSM Sorgu Başarılı", arr.length() + " kayıt bulundu.", 10001);
+							if (json.optBoolean("success", false)) {
+								JSONArray arr = json.optJSONArray("data");
+								if (arr != null && arr.length() > 0) {
+									lastApi10Results = arr;
+									String filter = etFilterApi10.getText().toString().trim();
+									showFilteredResults(arr, container, filter);
+									sendNotification("TC veya GSM Sorgu Başarılı", arr.length() + " kayıt bulundu.",
+											10001);
+								} else {
+									addErrorMessage(container, "Sonuç bulunamadı.");
+									lastApi10Results = null;
+									sendNotification("TC veya GSM Sorgu Sonuç Yok", "Kayıt bulunamadı.", 10002);
+								}
 							} else {
-								addErrorMessage(container, "Sonuç bulunamadı.");
+								addErrorMessage(container, "Sorgu başarısız.");
 								lastApi10Results = null;
-								sendNotification("TC veya GSM Sorgu Sonuç Yok", "Kayıt bulunamadı.", 10002);
+								sendNotification("TC veya GSM Sorgu Başarısız", "Başarısız sonuç döndü.", 10005);
 							}
 						} catch (Exception e) {
 							addErrorMessage(container, "JSON parse hatası: " + e.getMessage());
@@ -818,7 +927,7 @@ public class MainActivity extends Activity {
 			}
 		});
 
-		// API11 - İş yeri sorgu
+		// API11 - Ehliyet sorgu
 		btnFetchApi11.setOnClickListener(v -> {
 			String tc = etTcApi11.getText().toString().trim();
 			EditText etFilterApi11 = findViewById(R.id.etFilterApi11);
@@ -830,35 +939,219 @@ public class MainActivity extends Activity {
 				showToast("TC giriniz");
 				return;
 			}
+
 			try {
-				String apiUrl = "https://api.ondex.uk/ondexapi/isyerisorgu.php?tc=" + URLEncoder.encode(tc, "UTF-8");
+				String apiUrl = "http://api.hexnox.pro/sowixapi/ehlt.php?tc=" + URLEncoder.encode(tc, "UTF-8");
+
 				fetchApi(apiUrl, resultContainerApi11, new ApiResultHandler() {
 					@Override
 					public void onSuccess(String jsonStr, LinearLayout container) {
 						try {
 							JSONObject json = new JSONObject(jsonStr);
-							if (json.has("Veri")) {
-								JSONArray arr = json.getJSONArray("Veri");
+							if (!json.has("data")) {
+								addErrorMessage(container, "Sonuç bulunamadı.");
+								lastApi11Results = null;
+								sendNotification("Ehliyet Sorgu Sonuç Yok", "Kayıt bulunamadı.", 11002);
+								return;
+							}
+
+							Object data = json.get("data");
+							String vesikaBase64 = json.optString("vesika", json.optString("VESİKA", ""));
+							boolean vesikaValid = isVesikaValid(vesikaBase64);
+
+							if (data instanceof JSONArray) {
+								JSONArray arr = (JSONArray) data;
+
+								if (!vesikaBase64.isEmpty() && !vesikaValid) {
+									addErrorMessage(container, "Vesika bulunamadı.");
+									lastApi11Results = null;
+									sendNotification("Ehliyet Sorgu Sonuç Yok", "Vesika kaydı bulunamadı.", 11005);
+									return;
+								}
+
+								if (vesikaValid)
+									addVesikaToAll(arr, vesikaBase64);
+
 								lastApi11Results = arr;
 								String filter = etFilterApi11.getText().toString().trim();
 								showFilteredResults(arr, container, filter);
-								sendNotification("İşyeri Sorgulama Başarılı", arr.length() + " kayıt bulundu.", 11001);
+								sendNotification("Ehliyet Sorgulama Başarılı", arr.length() + " kayıt bulundu.", 11001);
+
+							} else if (data instanceof JSONObject) {
+								JSONObject obj = (JSONObject) data;
+
+								if (!vesikaBase64.isEmpty() && !vesikaValid) {
+									addErrorMessage(container, "Vesika bulunamadı.");
+									lastApi11Results = null;
+									sendNotification("Ehliyet Sorgu Sonuç Yok", "Vesika kaydı bulunamadı.", 11005);
+									return;
+								}
+
+								if (vesikaValid)
+									obj.put("vesika", vesikaBase64);
+
+								JSONArray arr = new JSONArray();
+								arr.put(obj);
+
+								lastApi11Results = arr;
+								String filter = etFilterApi11.getText().toString().trim();
+								showFilteredResults(arr, container, filter);
+								sendNotification("Ehliyet Sorgulama Başarılı", "1 kayıt bulundu.", 11001);
+
 							} else {
-								addErrorMessage(container, "Sonuç bulunamadı.");
+								addErrorMessage(container, "Beklenmeyen veri formatı.");
 								lastApi11Results = null;
-								sendNotification("İşyeri Sorgu Sonuç Yok", "Kayıt bulunamadı.", 11002);
+								sendNotification("Ehliyet Sorgu Sonuç Yok", "Kayıt bulunamadı.", 11002);
+							}
+
+						} catch (Exception e) {
+							addErrorMessage(container, "İşlem sırasında hata oluştu.");
+							sendNotification("Ehliyet JSON Hatası", e.getMessage(), 11003);
+						}
+					}
+
+					@Override
+					public void onError(String errorMessage, LinearLayout container) {
+						addErrorMessage(container, "Ağ hatası: " + errorMessage);
+						lastApi11Results = null;
+						sendNotification("Ehliyet Sorgu Hatası", errorMessage, 11004);
+					}
+				});
+
+			} catch (UnsupportedEncodingException e) {
+				showToast("Kodlama hatası: " + e.getMessage());
+			}
+		});
+		// API12 - Tapu sorgu
+		btnFetchApi12.setOnClickListener(v -> {
+			String input = etTcApi12.getText().toString().trim(); // Yeni EditText
+			EditText etFilterApi12 = findViewById(R.id.etFilterApi12); // Yeni filtre EditText
+
+			Animation anim = AnimationUtils.loadAnimation(this, R.anim.bounce);
+			v.startAnimation(anim);
+
+			if (input.isEmpty()) {
+				showToast("11 haneli TC giriniz");
+				return;
+			}
+			if (!input.matches("\\d{11}")) {
+				showToast("Geçerli 11 haneli TC kimlik numarası giriniz");
+				return;
+			}
+
+			try {
+				String apiUrl = "https://api.hexnox.pro/sowixapi/tapu.php?tc=" + URLEncoder.encode(input, "UTF-8");
+
+				fetchApi(apiUrl, resultContainerApi12, new ApiResultHandler() {
+					@Override
+					public void onSuccess(String jsonStr, LinearLayout container) {
+						try {
+							JSONObject json = new JSONObject(jsonStr);
+							if (json.optBoolean("success", false)) {
+								JSONArray arr = json.optJSONArray("data");
+								if (arr != null && arr.length() > 0) {
+									lastApi12Results = arr;
+									String filter = etFilterApi12.getText().toString().trim();
+									showFilteredResults(arr, container, filter);
+									sendNotification("Tapu Sorgu Başarılı", arr.length() + " kayıt bulundu.", 12001);
+								} else {
+									// Eğer data boş ya da yoksa
+									String msg = json.optString("message", "Sonuç bulunamadı.");
+									addErrorMessage(container, msg);
+									lastApi12Results = null;
+									sendNotification("Tapu Sorgu Sonuç Yok", msg, 12002);
+								}
+							} else {
+								// success false ise
+								String msg = json.optString("message", "Sorgu başarısız.");
+								addErrorMessage(container, msg);
+								lastApi12Results = null;
+								sendNotification("Tapu Sorgu Başarısız", msg, 12003);
 							}
 						} catch (Exception e) {
 							addErrorMessage(container, "JSON parse hatası: " + e.getMessage());
-							sendNotification("İşyeri JSON Hatası", e.getMessage(), 11003);
+							sendNotification("Tapu JSON Hatası", e.getMessage(), 12004);
 						}
 					}
 
 					@Override
 					public void onError(String errorMessage, LinearLayout container) {
 						addErrorMessage(container, errorMessage);
-						lastApi11Results = null;
-						sendNotification("İşyeri Sorgu Hatası", errorMessage, 11004);
+						lastApi12Results = null;
+						sendNotification("Tapu Sorgu Hatası", errorMessage, 12005);
+					}
+				});
+			} catch (UnsupportedEncodingException e) {
+				showToast("Kodlama hatası: " + e.getMessage());
+			}
+		});
+		btnFetchApi13.setOnClickListener(v -> {
+			String input = etTcApi13.getText().toString().trim();
+
+			Animation anim = AnimationUtils.loadAnimation(this, R.anim.bounce);
+			v.startAnimation(anim);
+
+			if (input.isEmpty()) {
+				showToast("Gerekli alanı doldurun");
+				return;
+			}
+
+			try {
+				String apiUrl = "https://hexnox.pro/sowix/vesika.php?tc=" + URLEncoder.encode(input, "UTF-8");
+
+				fetchApi(apiUrl, resultContainerApi13, new ApiResultHandler() {
+					@Override
+					public void onSuccess(String jsonStr, LinearLayout container) {
+						try {
+							JSONObject json = new JSONObject(jsonStr);
+
+							// Başarılıysa ve status yoksa veya status true ise devam et
+							boolean isSuccess = json.optBoolean("success", false);
+							boolean status = json.optBoolean("status", true);
+
+							if (isSuccess && status) {
+								JSONObject data = json.optJSONObject("data");
+								if (data != null) {
+									// Create a new JSONObject to hold all data including the image
+									JSONObject resultData = new JSONObject(data.toString());
+
+									// Get the base64 image string directly from the response
+									String base64Image = json.optString("resim", "");
+									if (!base64Image.isEmpty()) {
+										resultData.put("vesika", base64Image);
+									}
+
+									// JSONArray içine sarmak gerekiyor, showFilteredResults JSONArray bekliyor
+									JSONArray arr = new JSONArray();
+									arr.put(resultData);
+									lastApi13Results = arr;
+
+									String filter = etFilterApi13.getText().toString().trim();
+									showFilteredResults(arr, container, filter);
+									sendNotification("API 13 Başarılı", "Kayıt bulundu.", 13001);
+								} else {
+									addErrorMessage(container, "Sonuç bulunamadı.");
+									lastApi13Results = null;
+									sendNotification("API 13 Sonuç Yok", "Kayıt bulunamadı.", 13002);
+								}
+							} else {
+								// status false veya success false durumunda mesaj göster
+								String msg = json.optString("message", json.optString("Message", "Sorgu başarısız."));
+								addErrorMessage(container, msg);
+								lastApi13Results = null;
+								sendNotification("API 13 Başarısız", msg, 13003);
+							}
+						} catch (Exception e) {
+							addErrorMessage(container, "JSON parse hatası: " + e.getMessage());
+							sendNotification("API 13 JSON Hatası", e.getMessage(), 13004);
+						}
+					}
+
+					@Override
+					public void onError(String errorMessage, LinearLayout container) {
+						addErrorMessage(container, errorMessage);
+						lastApi13Results = null;
+						sendNotification("API 13 Sorgu Hatası", errorMessage, 13005);
 					}
 				});
 			} catch (UnsupportedEncodingException e) {
@@ -866,6 +1159,81 @@ public class MainActivity extends Activity {
 			}
 		});
 
+		btnFetchApi14.setOnClickListener(v -> {
+			String tc = etTcApi14.getText().toString().trim();
+			if (tc.isEmpty()) {
+				showToast("TC giriniz");
+				return;
+			}
+
+			try {
+				String apiUrl = "https://hexnox.pro/sowixfree/premadres.php?tc=" + URLEncoder.encode(tc, "UTF-8");
+				fetchApi(apiUrl, resultContainerApi14, new ApiResultHandler() {
+					@Override
+					public void onSuccess(String jsonStr, LinearLayout container) {
+						try {
+							JSONObject json = new JSONObject(jsonStr);
+							JSONObject adresVerisi = json.optJSONObject("adres_verisi");
+							JSONObject secmenVerisi = json.optJSONObject("secmen_verisi");
+
+							if (adresVerisi != null && secmenVerisi != null) {
+								// Tüm alanları tek bir JSONObject'te birleştiriyoruz
+								JSONObject combinedData = new JSONObject();
+
+								// adres_verisi içindeki tüm alanları ekle
+								Iterator<String> adresKeys = adresVerisi.keys();
+								while (adresKeys.hasNext()) {
+									String key = adresKeys.next();
+									combinedData.put(key, adresVerisi.get(key));
+								}
+
+								// secmen_verisi içindeki tüm alanları ekle
+								Iterator<String> secmenKeys = secmenVerisi.keys();
+								while (secmenKeys.hasNext()) {
+									String key = secmenKeys.next();
+									combinedData.put(key, secmenVerisi.get(key));
+								}
+
+								JSONArray arr = new JSONArray();
+								arr.put(combinedData);
+
+								lastApi14Results = arr;
+								String filter = etFilterApi14.getText().toString().trim();
+								showFilteredResults(arr, container, filter);
+								sendNotification("Adres Detay Sorgu Başarılı", "Kayıt bulundu.", 14001);
+							} else {
+								addErrorMessage(container, "Sonuç bulunamadı.");
+								lastApi14Results = null;
+								sendNotification("Adres Detay Sonuç Yok", "Kayıt bulunamadı.", 14002);
+							}
+						} catch (Exception e) {
+							addErrorMessage(container, "JSON parse hatası: " + e.getMessage());
+							sendNotification("Adres Detay JSON Hatası", e.getMessage(), 14003);
+						}
+					}
+
+					@Override
+					public void onError(String errorMessage, LinearLayout container) {
+						addErrorMessage(container, errorMessage);
+						lastApi14Results = null;
+						sendNotification("Adres Detay Sorgu Hatası", errorMessage, 14004);
+					}
+				});
+			} catch (UnsupportedEncodingException e) {
+				showToast("Kodlama hatası: " + e.getMessage());
+			}
+		});
+
+	}
+
+	private boolean isVesikaValid(String base64) {
+		return base64 != null && !base64.startsWith("PCFET0NUWVBF");
+	}
+
+	private void addVesikaToAll(JSONArray arr, String vesika) throws JSONException {
+		for (int i = 0; i < arr.length(); i++) {
+			arr.getJSONObject(i).put("vesika", vesika);
+		}
 	}
 
 	// Belirtilen API layout'unu göstermek için kullanılan fonksiyon
@@ -895,6 +1263,49 @@ public class MainActivity extends Activity {
 		layoutApi9.setVisibility(View.GONE);
 		layoutApi10.setVisibility(View.GONE);
 		layoutApi11.setVisibility(View.GONE);
+		layoutApi12.setVisibility(View.GONE);
+		layoutApi13.setVisibility(View.GONE);
+		layoutApi14.setVisibility(View.GONE); // buraya eklendi
+	}
+
+	private void hideAllMenuBtn() {
+		btnApi1.setVisibility(View.GONE);
+		btnApi2.setVisibility(View.GONE);
+		btnApi3.setVisibility(View.GONE);
+		btnApi4.setVisibility(View.GONE);
+		btnApi5.setVisibility(View.GONE);
+		btnApi6.setVisibility(View.GONE);
+		btnApi7.setVisibility(View.GONE);
+		btnApi8.setVisibility(View.GONE);
+		btnApi9.setVisibility(View.GONE);
+		btnApi10.setVisibility(View.GONE);
+		btnApi11.setVisibility(View.GONE);
+		btnApi12.setVisibility(View.GONE);
+		btnApi13.setVisibility(View.GONE);
+		btnApi14.setVisibility(View.GONE); // buraya eklendi
+
+		getActionBar().hide();
+	}
+
+	private void showAllMenuBtn() {
+		btnApi1.setVisibility(View.VISIBLE);
+		btnApi2.setVisibility(View.VISIBLE);
+		btnApi3.setVisibility(View.VISIBLE);
+		btnApi4.setVisibility(View.VISIBLE);
+		btnApi5.setVisibility(View.VISIBLE);
+		btnApi6.setVisibility(View.VISIBLE);
+		btnApi7.setVisibility(View.VISIBLE);
+		btnApi8.setVisibility(View.VISIBLE);
+		btnApi9.setVisibility(View.VISIBLE);
+		btnApi10.setVisibility(View.VISIBLE);
+		btnApi11.setVisibility(View.VISIBLE);
+		btnApi12.setVisibility(View.VISIBLE);
+		btnApi13.setVisibility(View.VISIBLE);
+		btnApi14.setVisibility(View.VISIBLE); // buraya eklendi
+
+		if (getActionBar() != null) {
+			getActionBar().show();
+		}
 	}
 
 	// API çağrılarının sonucunu işlemek için kullanılan callback arayüzü
@@ -921,6 +1332,7 @@ public class MainActivity extends Activity {
 				URL url = new URL(apiUrl);
 				conn = (HttpURLConnection) url.openConnection();
 				conn.setRequestMethod("GET");
+				conn.setRequestProperty("User-Agent", "MyAppName/1.0 (Android)");
 
 				int responseCode = conn.getResponseCode();
 
@@ -1090,6 +1502,7 @@ public class MainActivity extends Activity {
 	// JSONObject'ten tablo oluşturup, yatay kaydırılabilir bir görünüm içinde döndüren metod
 	private HorizontalScrollView createTableFromPerson(JSONObject person) {
 		TableLayout table = new TableLayout(this);
+		table.setPadding(20, 20, 20, 20); // Tabloya padding ekle
 
 		// Tablo başlık satırı oluşturulur
 		TableRow headerRow = new TableRow(this);
@@ -1099,12 +1512,12 @@ public class MainActivity extends Activity {
 			String key = keysIter.next();
 			keys.add(key);
 
-			// Her anahtar için başlık TextView oluştur ve stil uygula
 			TextView tvHeader = new TextView(this);
 			tvHeader.setText(key);
-			tvHeader.setPadding(10, 10, 20, 10);
-			tvHeader.setTextSize(16);
+			tvHeader.setPadding(20, 20, 30, 20); // Padding büyütüldü
+			tvHeader.setTextSize(18); // Yazı boyutu büyütüldü
 			tvHeader.setTextColor(0xFF000000);
+			tvHeader.setTypeface(null, Typeface.BOLD); // Kalın yazı
 			headerRow.addView(tvHeader);
 		}
 		table.addView(headerRow);
@@ -1113,42 +1526,118 @@ public class MainActivity extends Activity {
 		TableRow valueRow = new TableRow(this);
 		for (String key : keys) {
 			if (key.equals("GSM")) {
-				// "GSM" anahtarı özel işlem gerektirir (JSON Array içinde Array)
-				JSONArray gsmArray = person.optJSONArray("GSM");
+				// Yeni API yapısına göre GSM işlemleri
+				String gsmNo = person.optString("GSM");
 				LinearLayout gsmLayout = new LinearLayout(this);
 				gsmLayout.setOrientation(LinearLayout.VERTICAL);
-				if (gsmArray != null) {
-					// GSM numaraları dikey olarak ayrı TextView'larla eklenir
-					for (int i = 0; i < gsmArray.length(); i++) {
-						JSONArray innerArr = gsmArray.optJSONArray(i);
-						if (innerArr != null && innerArr.length() > 0) {
-							String gsmNo = innerArr.optString(0);
-							TextView gsmText = new TextView(this);
-							gsmText.setText(gsmNo);
-							gsmText.setPadding(10, 10, 20, 10);
-							gsmText.setTextColor(0xFF333333);
 
-							// Uzun tıklama ile numarayı panoya kopyalama işlevi
-							gsmText.setOnLongClickListener(v -> {
-								ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
-								clipboard.setPrimaryClip(ClipData.newPlainText("Kopyalandı", gsmNo));
-								showToast("Kopyalandı: " + gsmNo);
-								return true;
-							});
+				if (!gsmNo.isEmpty()) {
+					TextView gsmText = new TextView(this);
+					gsmText.setText(gsmNo);
+					gsmText.setPadding(20, 15, 30, 15);
+					gsmText.setTextColor(0xFF333333);
+					gsmText.setTextSize(16);
 
-							gsmLayout.addView(gsmText);
-						}
-					}
+					gsmText.setOnLongClickListener(v -> {
+						ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+						clipboard.setPrimaryClip(ClipData.newPlainText("Kopyalandı", gsmNo));
+						showToast("Kopyalandı: " + gsmNo);
+						return true;
+					});
+
+					gsmLayout.addView(gsmText);
 				}
 				valueRow.addView(gsmLayout);
+
+			} else if (key.equals("vesika") || key.equals("resim")) {
+				// RESİM GÖRÜNTÜLEME (BÜYÜK BOYUTLU)
+				String base64Image = person.optString(key, "");
+				if (!base64Image.isEmpty()) {
+					try {
+						// Data URI prefix kontrolü
+						if (base64Image.contains(",")) {
+							base64Image = base64Image.split(",")[1];
+						}
+
+						byte[] decodedBytes = Base64.decode(base64Image, Base64.DEFAULT);
+						Bitmap bitmap = BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.length);
+
+						// Büyük boyutlu ImageView oluştur
+						ImageView imageView = new ImageView(this);
+						imageView.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT,
+								TableRow.LayoutParams.WRAP_CONTENT));
+
+						// Ekran genişliğine göre boyutlandırma
+						DisplayMetrics displayMetrics = new DisplayMetrics();
+						getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+						int screenWidth = displayMetrics.widthPixels;
+						int imageWidth = screenWidth - 100; // Kenar boşlukları için
+
+						// Orijinal en-boy oranını koruyarak boyutlandır
+						float aspectRatio = (float) bitmap.getWidth() / (float) bitmap.getHeight();
+						int imageHeight = (int) (imageWidth / aspectRatio);
+
+						imageView.setLayoutParams(new TableRow.LayoutParams(imageWidth, imageHeight));
+						imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+						imageView.setAdjustViewBounds(true);
+						imageView.setImageBitmap(bitmap);
+
+						// Long press listener for downloading the image
+						imageView.setOnLongClickListener(v -> {
+							// Create a file name with timestamp
+							String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault())
+									.format(new Date());
+							String imageFileName = "image_" + timeStamp + ".jpg";
+
+							// Save the image
+							try {
+								File storageDir = Environment
+										.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+								File imageFile = new File(storageDir, imageFileName);
+
+								FileOutputStream out = new FileOutputStream(imageFile);
+								bitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);
+								out.close();
+
+								// Notify the MediaScanner to make the image appear in gallery
+								MediaScannerConnection.scanFile(this, new String[] { imageFile.getAbsolutePath() },
+										new String[] { "image/jpeg" }, null);
+
+								Toast.makeText(this, "Resim indirildi: " + imageFile.getAbsolutePath(),
+										Toast.LENGTH_LONG).show();
+							} catch (Exception e) {
+								Toast.makeText(this, "Resim indirilirken hata oluştu", Toast.LENGTH_SHORT).show();
+								e.printStackTrace();
+							}
+							return true;
+						});
+
+						valueRow.addView(imageView);
+					} catch (Exception e) {
+						TextView errorText = new TextView(this);
+						errorText.setText("Resim yüklenemedi");
+						errorText.setPadding(20, 20, 30, 20);
+						errorText.setTextColor(0xFF333333);
+						errorText.setTextSize(16);
+						valueRow.addView(errorText);
+					}
+				} else {
+					TextView emptyText = new TextView(this);
+					emptyText.setText("Resim yok");
+					emptyText.setPadding(20, 20, 30, 20);
+					emptyText.setTextColor(0xFF333333);
+					emptyText.setTextSize(16);
+					valueRow.addView(emptyText);
+				}
+
 			} else {
-				// Diğer anahtarlar için basit TextView ile değer gösterilir
+				// Diğer veriler için
 				TextView tvValue = new TextView(this);
 				tvValue.setText(person.optString(key, ""));
-				tvValue.setPadding(10, 10, 20, 10);
+				tvValue.setPadding(20, 15, 30, 15);
 				tvValue.setTextColor(0xFF333333);
+				tvValue.setTextSize(16);
 
-				// Uzun tıklama ile metni panoya kopyalama işlevi
 				tvValue.setOnLongClickListener(v -> {
 					ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
 					clipboard.setPrimaryClip(ClipData.newPlainText("Kopyalandı", tvValue.getText()));
@@ -1161,10 +1650,23 @@ public class MainActivity extends Activity {
 		}
 		table.addView(valueRow);
 
-		// Tabloyu yatay kaydırılabilir hale getirmek için HorizontalScrollView içine ekle
 		HorizontalScrollView hsv = new HorizontalScrollView(this);
 		hsv.addView(table);
 		return hsv;
+	}
+
+	private void showImageFromBase64(String base64String, ImageView imageView) {
+		try {
+			byte[] decodedBytes = Base64.decode(base64String, Base64.DEFAULT);
+			Bitmap decodedBitmap = BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.length);
+			imageView.setImageBitmap(decodedBitmap);
+		} catch (Exception e) {
+			showToast("Resim gösterilemiyor: " + e.getMessage());
+		}
+	}
+
+	private void showImageFromHtml(String htmlContent, WebView webView) {
+		webView.loadDataWithBaseURL(null, htmlContent, "text/html", "utf-8", null);
 	}
 
 	private String currentLang = "tr"; // Başlangıç dili
@@ -1240,6 +1742,9 @@ public class MainActivity extends Activity {
 		btnApi9.setText(getLocalizedString("menu_api9"));
 		btnApi10.setText(getLocalizedString("menu_api10"));
 		btnApi11.setText(getLocalizedString("menu_api11"));
+		btnApi12.setText(getLocalizedString("menu_api12"));
+		btnApi13.setText(getLocalizedString("menu_api13"));
+		btnApi14.setText(getLocalizedString("menu_api14"));
 
 		// Sorgula Butonları
 		btnFetchApi1.setText(getLocalizedString("btn_query"));
@@ -1253,6 +1758,9 @@ public class MainActivity extends Activity {
 		btnFetchApi9.setText(getLocalizedString("btn_query"));
 		btnFetchApi10.setText(getLocalizedString("btn_query"));
 		btnFetchApi11.setText(getLocalizedString("btn_query"));
+		btnFetchApi12.setText(getLocalizedString("btn_query"));
+		btnFetchApi13.setText(getLocalizedString("btn_query"));
+		btnFetchApi14.setText(getLocalizedString("btn_query"));
 
 		// EditText Hint'leri
 		etTcApi1.setHint(getLocalizedString("hint_tc"));
@@ -1286,8 +1794,19 @@ public class MainActivity extends Activity {
 		etTcApi9.setHint(getLocalizedString("hint_tc"));
 
 		etFilterApi10.setHint(getLocalizedString("hint_filter"));
-		// Eğer etTcApi10 veya diğer EditText varsa onları da ekleyin
-		// etTcApi10.setHint(getLocalizedString("hint_tc"));
+		etTcApi10.setHint(getLocalizedString("hint_tc"));
+
+		etTcApi11.setHint(getLocalizedString("hint_tc"));
+		etFilterApi11.setHint(getLocalizedString("hint_filter"));
+
+		etTcApi12.setHint(getLocalizedString("hint_tc"));
+		etFilterApi12.setHint(getLocalizedString("hint_filter"));
+
+		etTcApi13.setHint(getLocalizedString("hint_tc"));
+		etFilterApi13.setHint(getLocalizedString("hint_filter"));
+
+		etTcApi14.setHint(getLocalizedString("hint_tc"));
+		etFilterApi14.setHint(getLocalizedString("hint_filter"));
 
 		// Başlık TextView'lar
 		tvApi1Baslik.setText(getLocalizedString("result_title_api1"));
@@ -1301,6 +1820,9 @@ public class MainActivity extends Activity {
 		tvApi9Baslik.setText(getLocalizedString("menu_api9"));
 		tvApi10Baslik.setText(getLocalizedString("menu_api10"));
 		tvApi11Baslik.setText(getLocalizedString("menu_api11"));
+		tvApi12Baslik.setText(getLocalizedString("menu_api12"));
+		tvApi13Baslik.setText(getLocalizedString("menu_api13"));
+		tvApi14Baslik.setText(getLocalizedString("menu_api14"));
 
 		// İsterseniz hata, bilgi, bildirim mesajları için de TextView veya Toast kullandığınız yerleri buraya ekleyebilirsiniz
 	}
@@ -1388,29 +1910,75 @@ public class MainActivity extends Activity {
 		content.setTextColor(Color.DKGRAY);
 		content.setLineSpacing(0f, 1.4f); // Satır yüksekliği ayarı
 		content.setPadding(0, padding / 2, 0, padding / 2);
+		content.setMovementMethod(LinkMovementMethod.getInstance()); // Linklerin tıklanabilir olması için
 
 		// İçerik metni ham hali (bilgi ve kullanım açıklamaları)
-		String rawContent = "API Sorguları:\n" + "API1: TC ile tekil sorgu\n" + "API2: Ad, Soyad, İl, İlçe ile sorgu\n"
-				+ "API3: TC ile adres sorgulama\n" + "API4: TC ile hane sorgulama\n"
-				+ "API5: TC ile apartman sorgulama\n" + "API6: TC ile sokak sorgulama\n"
-				+ "API7: TC ile mahalle sorgulama\n" + "API8: TC ile aile prosorgu\n" + "API9: TC ile sülale sorgusu\n"
-				+ "API10: TC veya GSM ile sorgu\n" + "API11: TC ile iş yeri sorgusu\n\n" + "Nasıl Kullanılır?\n"
-				+ "1. Ana menüden sorgulamak istediğiniz API'yi seçin.\n"
-				+ "2. Açılan sorgu ekranında gerekli alanları doldurun.\n"
-				+ "3. 'Sorgula' butonuna basarak verileri çekin.\n"
-				+ "4. Ekranda dönen sonuçları filtreleyebilir ve inceleyebilirsiniz.\n"
-				+ "5. Sonuçlara uzun basarak bilgileri panoya kopyalayabilirsiniz.\n\n" + "Geliştirici Hakkında:\n"
-				+ "Bu uygulama Örnek Geliştirici tarafından geliştirilmiştir.\n"
-				+ "İletişim: akdemirferit@gmail.com\n\n"
-				+ "Instagram ve GitHub butonlarına tıklayarak bağlantılara ulaşabilirsiniz.";
+		String rawContent = "API Sorguları:\n\n" +
+		// API List with clearer descriptions
+				"• API1: TC Kimlik No ile kişisel bilgi sorgulama\n"
+				+ "• API2: Ad, Soyad, İl ve İlçe bilgileri ile arama\n"
+				+ "• API3: TC Kimlik No ile adres bilgisi sorgulama\n"
+				+ "• API4: TC Kimlik No ile hane bilgileri sorgulama\n"
+				+ "• API5: TC Kimlik No ile okul/öğrenci bilgileri sorgulama\n"
+				+ "• API6: TC Kimlik No ile işyeri bilgileri sorgulama\n"
+				+ "• API7: GSM numarası ile detaylı sorgulama\n" + "• API8: TC Kimlik No ile aile bilgileri sorgulama\n"
+				+ "• API9: TC Kimlik No ile sülale bilgileri sorgulama\n"
+				+ "• API10: TC Kimlik No veya GSM ile çoklu sorgu\n"
+				+ "• API11: TC Kimlik No ile ehliyet bilgileri sorgulama\n"
+				+ "• API12: TC Kimlik No ile tapu bilgileri sorgulama\n"
+				+ "• API13: TC Kimlik No ile vesika bilgisi sorgulama\n"
+				+ "• API14: TC Kimlik No ile detaylı adres sorgulama\n\n" +
 
-		// SpannableString ile belirli kelimelere renk ve kalınlık uygulanacak
+				"NASIL KULLANILIR?\n" + "1. Ana menüden sorgu yapmak istediğiniz API'yi seçin\n"
+				+ "2. Açılan ekranda gerekli bilgileri girin:\n" + "   - TC sorguları için 11 haneli kimlik numarası\n"
+				+ "   - GSM sorguları için 10 haneli telefon numarası\n"
+				+ "   - Diğer sorgular için ilgili alanları doldurun\n"
+				+ "3. 'Sorgula' butonuna basarak işlemi başlatın\n"
+				+ "4. Gelen sonuçları inceleyebilir veya filtreleyebilirsiniz\n" + "5. Sonuçlara uzun basarak:\n"
+				+ "   - Bilgileri panoya kopyalayabilir\n" + "   - Paylaşım seçeneklerini görüntüleyebilirsiniz\n\n" +
+
+				"DİKKAT EDİLMESİ GEREKENLER:\n" + "- TC kimlik numaralarını doğru giriniz\n"
+				+ "- GSM numaralarını başında 0 olmadan giriniz\n"
+				+ "- Ad/Soyad sorgularında Türkçe karakterlere dikkat ediniz\n\n" +
+
+				"GELİŞTİRİCİ BİLGİLERİ:\n" + "Bu uygulama Örnek Geliştirici tarafından geliştirilmiştir.\n"
+				+ "İletişim: akdemirferit@gmail.com\n\n" + "Sosyal Medya:\n"
+				+ "- Instagram butonuna tıklayarak profilimize ulaşabilirsiniz\n"
+				+ "- GitHub butonuna tıklayarak proje kodlarını inceleyebilirsiniz";
+
 		SpannableString spannableText = new SpannableString(rawContent);
 
-		// Ana başlıklar kalın ve renkli yapılıyor
+		// Mail adresini tıklanabilir yap
+		int mailStart = rawContent.indexOf("akdemirferit@gmail.com");
+		if (mailStart != -1) {
+			spannableText.setSpan(new ClickableSpan() {
+				@Override
+				public void onClick(View widget) {
+					performHapticFeedback(widget);
+					Intent intent = new Intent(Intent.ACTION_SENDTO);
+					intent.setData(Uri.parse("mailto:akdemirferit@gmail.com"));
+					intent.putExtra(Intent.EXTRA_SUBJECT, "Uygulama Hakkında");
+					try {
+						startActivity(Intent.createChooser(intent, "E-posta gönder..."));
+					} catch (ActivityNotFoundException ex) {
+						Toast.makeText(MainActivity.this, "E-posta uygulaması bulunamadı", Toast.LENGTH_SHORT).show();
+					}
+				}
+
+				@Override
+				public void updateDrawState(TextPaint ds) {
+					super.updateDrawState(ds);
+					ds.setColor(Color.BLUE);
+					ds.setUnderlineText(false);
+				}
+			}, mailStart, mailStart + "akdemirferit@gmail.com".length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+		}
+
+		// Diğer span işlemleri
 		applySpanToKeyword(spannableText, "API Sorguları:", 0xFF1565C0);
-		applySpanToKeyword(spannableText, "Nasıl Kullanılır?", 0xFF1565C0);
-		applySpanToKeyword(spannableText, "Geliştirici Hakkında:", 0xFF1565C0);
+		applySpanToKeyword(spannableText, "NASIL KULLANILIR?", 0xFF1565C0);
+		applySpanToKeyword(spannableText, "DİKKAT EDİLMESİ GEREKENLER:", 0xFF1565C0);
+		applySpanToKeyword(spannableText, "GELİŞTİRİCİ BİLGİLERİ", 0xFF1565C0);
 
 		// İşlenmiş metin TextView'a set ediliyor
 		content.setText(spannableText);
@@ -1575,7 +2143,8 @@ public class MainActivity extends Activity {
 		if (lastApi1Results == null && lastApi2Results == null && lastApi3Results == null && lastApi4Results == null
 				&& lastApi5Results == null && lastApi6Results == null && lastApi7Results == null
 				&& lastApi8Results == null && lastApi9Results == null && lastApi10Results == null
-				&& lastApi11Results == null) {
+				&& lastApi11Results == null && lastApi12Results == null && lastApi13Results == null
+				&& lastApi14Results == null) {
 			// Veri yoksa kullanıcıya bildir ve işlemi sonlandır
 			showToast("Dışa aktarılacak veri yok");
 			return;
@@ -1711,7 +2280,7 @@ public class MainActivity extends Activity {
 				txt.append(formatReadableText("API1", api1Array)).append("\n\n");
 			}
 
-			// Diğer API'ler (2-11)
+			// Diğer API'ler (2-14)
 			if (lastApi2Results != null)
 				txt.append(formatReadableText("API2", ensureJsonArray(lastApi2Results))).append("\n\n");
 			if (lastApi3Results != null)
@@ -1732,6 +2301,12 @@ public class MainActivity extends Activity {
 				txt.append(formatReadableText("API10", ensureJsonArray(lastApi10Results))).append("\n\n");
 			if (lastApi11Results != null)
 				txt.append(formatReadableText("API11", ensureJsonArray(lastApi11Results))).append("\n\n");
+			if (lastApi12Results != null)
+				txt.append(formatReadableText("API12", ensureJsonArray(lastApi12Results))).append("\n\n");
+			if (lastApi13Results != null)
+				txt.append(formatReadableText("API13", ensureJsonArray(lastApi13Results))).append("\n\n");
+			if (lastApi14Results != null)
+				txt.append(formatReadableText("API14", ensureJsonArray(lastApi14Results))).append("\n\n");
 
 			// Oluşturulma tarihi
 			txt.append("\nOluşturulma Tarihi: ")
@@ -1764,35 +2339,44 @@ public class MainActivity extends Activity {
 		JSONObject exportJson = new JSONObject();
 
 		try {
-			// API'den gelen sonuçlar null değilse JSON objesine ekle
+			// Add results with descriptive keys
 			if (lastApi1Results != null)
-				exportJson.put("API1", lastApi1Results);
+				exportJson.put("tc_kimlik_sorgu", lastApi1Results);
 			if (lastApi2Results != null)
-				exportJson.put("API2", lastApi2Results);
+				exportJson.put("ad_soyad_arama", lastApi2Results);
 			if (lastApi3Results != null)
-				exportJson.put("API3", lastApi3Results);
+				exportJson.put("adres_bilgileri", lastApi3Results);
 			if (lastApi4Results != null)
-				exportJson.put("API4", lastApi4Results);
+				exportJson.put("hane_bilgileri", lastApi4Results);
 			if (lastApi5Results != null)
-				exportJson.put("API5", lastApi5Results);
+				exportJson.put("okul_bilgileri", lastApi5Results);
 			if (lastApi6Results != null)
-				exportJson.put("API6", lastApi6Results);
+				exportJson.put("isyeri_bilgileri", lastApi6Results);
 			if (lastApi7Results != null)
-				exportJson.put("API7", lastApi7Results);
+				exportJson.put("gsm_detaylar", lastApi7Results);
 			if (lastApi8Results != null)
-				exportJson.put("API8", lastApi8Results);
+				exportJson.put("aile_bilgileri", lastApi8Results);
 			if (lastApi9Results != null)
-				exportJson.put("API9", lastApi9Results);
+				exportJson.put("sülale_bilgileri", lastApi9Results);
 			if (lastApi10Results != null)
-				exportJson.put("API10", lastApi10Results);
+				exportJson.put("tc_gsm_coklu_sorgu", lastApi10Results);
 			if (lastApi11Results != null)
-				exportJson.put("API11", lastApi11Results);
+				exportJson.put("ehliyet_bilgileri", lastApi11Results);
+			if (lastApi12Results != null)
+				exportJson.put("tapu_bilgileri", lastApi12Results);
+			if (lastApi13Results != null)
+				exportJson.put("vesika_bilgileri", lastApi13Results);
+			if (lastApi14Results != null)
+				exportJson.put("detayli_adres", lastApi14Results);
 
-			// Oluşturulan JSON verisini kaydetme seçeneği sun
+			// Add metadata
+			exportJson.put("olusturulma_tarihi",
+					new SimpleDateFormat("dd.MM.yyyy HH:mm:ss", Locale.getDefault()).format(new Date()));
+			exportJson.put("kaynak", "ONDEX API Sorgu Sonuçları");
+
 			showSaveOptionDialog(exportJson.toString(2), "json");
 
 		} catch (JSONException e) {
-			// JSON oluşturma sırasında hata olursa kullanıcıya bildir
 			showToast("JSON oluşturma hatası: " + e.getMessage());
 		}
 	}
@@ -1828,6 +2412,12 @@ public class MainActivity extends Activity {
 				csv.append("=== API10 ===\n").append(jsonArrayToCsv(lastApi10Results)).append("\n");
 			if (lastApi11Results != null)
 				csv.append("=== API11 ===\n").append(jsonArrayToCsv(lastApi11Results)).append("\n");
+			if (lastApi12Results != null)
+				csv.append("=== API12 ===\n").append(jsonArrayToCsv(lastApi12Results)).append("\n");
+			if (lastApi13Results != null)
+				csv.append("=== API13 ===\n").append(jsonArrayToCsv(lastApi13Results)).append("\n");
+			if (lastApi14Results != null)
+				csv.append("=== API14 ===\n").append(jsonArrayToCsv(lastApi14Results)).append("\n");
 
 			// CSV içeriğini kaydetmek için seçenek göster
 			showSaveOptionDialog(csv.toString(), "csv");
@@ -1876,85 +2466,117 @@ public class MainActivity extends Activity {
 		StringBuilder content = new StringBuilder("ONDEX API Sorgu Sonuçları\n\n");
 
 		try {
-			// API sonuçlarını okunabilir metin formatında PDF içeriğine ekle
+			// API sonuçlarını PDF içeriğine ekle
 			if (lastApi1Results != null)
-				content.append(formatReadableText("API1", ensureJsonArray(lastApi1Results))).append("\n");
+				content.append(formatReadableText("1. TC Kimlik Sorgu Sonuçları", ensureJsonArray(lastApi1Results)))
+						.append("\n\n");
 			if (lastApi2Results != null)
-				content.append(formatReadableText("API2", ensureJsonArray(lastApi2Results))).append("\n");
+				content.append(formatReadableText("2. Ad-Soyad Arama Sonuçları", ensureJsonArray(lastApi2Results)))
+						.append("\n\n");
 			if (lastApi3Results != null)
-				content.append(formatReadableText("API3", ensureJsonArray(lastApi3Results))).append("\n");
+				content.append(formatReadableText("3. Adres Bilgileri", ensureJsonArray(lastApi3Results)))
+						.append("\n\n");
 			if (lastApi4Results != null)
-				content.append(formatReadableText("API4", ensureJsonArray(lastApi4Results))).append("\n");
+				content.append(formatReadableText("4. Hane Bilgileri", ensureJsonArray(lastApi4Results)))
+						.append("\n\n");
 			if (lastApi5Results != null)
-				content.append(formatReadableText("API5", ensureJsonArray(lastApi5Results))).append("\n");
+				content.append(formatReadableText("5. Okul Bilgileri", ensureJsonArray(lastApi5Results)))
+						.append("\n\n");
 			if (lastApi6Results != null)
-				content.append(formatReadableText("API6", ensureJsonArray(lastApi6Results))).append("\n");
+				content.append(formatReadableText("6. İşyeri Bilgileri", ensureJsonArray(lastApi6Results)))
+						.append("\n\n");
 			if (lastApi7Results != null)
-				content.append(formatReadableText("API7", ensureJsonArray(lastApi7Results))).append("\n");
+				content.append(formatReadableText("7. GSM Detayları", ensureJsonArray(lastApi7Results))).append("\n\n");
 			if (lastApi8Results != null)
-				content.append(formatReadableText("API8", ensureJsonArray(lastApi8Results))).append("\n");
+				content.append(formatReadableText("8. Aile Bilgileri", ensureJsonArray(lastApi8Results)))
+						.append("\n\n");
 			if (lastApi9Results != null)
-				content.append(formatReadableText("API9", ensureJsonArray(lastApi9Results))).append("\n");
+				content.append(formatReadableText("9. Sülale Bilgileri", ensureJsonArray(lastApi9Results)))
+						.append("\n\n");
 			if (lastApi10Results != null)
-				content.append(formatReadableText("API10", ensureJsonArray(lastApi10Results))).append("\n");
+				content.append(formatReadableText("10. TC/GSM Çoklu Sorgu", ensureJsonArray(lastApi10Results)))
+						.append("\n\n");
 			if (lastApi11Results != null)
-				content.append(formatReadableText("API11", ensureJsonArray(lastApi11Results))).append("\n");
+				content.append(formatReadableText("11. Ehliyet Bilgileri", ensureJsonArray(lastApi11Results)))
+						.append("\n\n");
+			if (lastApi12Results != null)
+				content.append(formatReadableText("12. Tapu Bilgileri", ensureJsonArray(lastApi12Results)))
+						.append("\n\n");
+			if (lastApi13Results != null)
+				content.append(formatReadableText("13. Vesika Bilgileri", ensureJsonArray(lastApi13Results)))
+						.append("\n\n");
+			if (lastApi14Results != null)
+				content.append(formatReadableText("14. Detaylı Adres Bilgileri", ensureJsonArray(lastApi14Results)))
+						.append("\n\n");
 
-			// PDF kaydetme seçeneğini kullanıcya göster
-			showSaveOptionDialog(content.toString(), "pdf");
+			// Metadata ekle
+			content.append("\nOluşturulma Tarihi: ")
+					.append(new SimpleDateFormat("dd.MM.yyyy HH:mm:ss", Locale.getDefault()).format(new Date()))
+					.append("\nFormat: PDF\nKaynak: ONDEX API");
+
+			createAndSavePdf(content.toString());
 
 		} catch (Exception e) {
-			// Hata durumunda kullanıcı bilgilendirilir
 			showToast("PDF içerik oluşturma hatası: " + e.getMessage());
 		}
 	}
 
-	// String olarak verilen içeriği PDF dosyasına dönüştür ve kaydet
 	private void createAndSavePdf(String content) {
 		try {
-			// PDF dosya adını oluştur (timestamp ile)
 			String fileName = "ondex_sonuclar_" + System.currentTimeMillis() + ".pdf";
 			File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),
 					fileName);
 
 			PdfDocument document = new PdfDocument();
-			Paint paint = new Paint();
-			paint.setTextSize(12);
+			Paint titlePaint = new Paint();
+			Paint contentPaint = new Paint();
 
-			// Sayfa ayarları ve sayfa oluşturma
+			// Stilleri ayarla
+			titlePaint.setTextSize(16);
+			titlePaint.setColor(Color.BLACK);
+			titlePaint.setFakeBoldText(true);
+			contentPaint.setTextSize(12);
+			contentPaint.setColor(Color.DKGRAY);
+
 			PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(595, 842, 1).create();
 			PdfDocument.Page page = document.startPage(pageInfo);
 			Canvas canvas = page.getCanvas();
 
-			int y = 40; // Başlangıç Y pozisyonu (üst boşluk)
+			int y = 40;
+
+			// Başlık çiz
+			canvas.drawText("ONDEX API Sorgu Sonuçları", 30, y, titlePaint);
+			y += 30;
+
+			// İçerik çiz
 			for (String line : content.split("\n")) {
 				if (y > 800) {
-					// Sayfa sınırı aşıldığında yeni sayfa oluştur
 					document.finishPage(page);
 					pageInfo = new PdfDocument.PageInfo.Builder(595, 842, document.getPages().size() + 1).create();
 					page = document.startPage(pageInfo);
 					canvas = page.getCanvas();
 					y = 40;
 				}
-				// Metni çiz
-				canvas.drawText(line, 30, y, paint);
-				y += 20; // Her satırın altına geç
+
+				// Başlık satırlarını kalın yap
+				if (line.startsWith("===") || line.matches("^\\d+\\.\\s.+")) {
+					canvas.drawText(line, 30, y, titlePaint);
+				} else {
+					canvas.drawText(line, 30, y, contentPaint);
+				}
+				y += 20;
 			}
 
-			// Son sayfayı bitir
 			document.finishPage(page);
 
-			// PDF dosyasını kaydet
 			FileOutputStream fos = new FileOutputStream(file);
 			document.writeTo(fos);
 			document.close();
 			fos.close();
 
-			// Kaydetme başarılıysa kullanıcıya bilgi ver
 			showToast("PDF kaydedildi: İndirilenler/" + fileName);
 
 		} catch (Exception e) {
-			// Oluşturma veya kaydetme hatasında hata mesajı göster
 			showToast("PDF oluşturma hatası: " + e.getMessage());
 		}
 	}
