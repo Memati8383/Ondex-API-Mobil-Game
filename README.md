@@ -2,6 +2,9 @@
 
 Türkiye'de çeşitli resmi verilere erişim sağlayan API'leri kullanan Android uygulaması.
 
+> [!WARNING]
+> **Yasal Uyarı**: Tüm API sorguları yalnızca yasal amaçlarla ve ilgili kişinin açık rızası alınarak kullanılmalıdır. Kişisel verilerin korunması kanunlarına (KVKK) uygun hareket ediniz.
+
 ## 🛠️ Teknoloji ve Özellikler
 
 ### 📱 Platform
@@ -54,6 +57,10 @@ Türkiye'de çeşitli resmi verilere erişim sağlayan API'leri kullanan Android
 ### 🆔 Kimlik Bilgileri
 ![API1](https://img.shields.io/badge/TC_Kimlik_Sorgu-API1-red) 
 ![API10](https://img.shields.io/badge/TC/GSM_Sorgu-API10-blue)
+
+> [!CAUTION]
+> TC kimlik numarası özel nitelikli kişisel veridir. 6698 sayılı KVKK Madde 6 uyarınca özel önlemlerle korunmalıdır.
+
 - TC Kimlik No ile temel bilgiler
 - TC veya GSM numarası ile çoklu sorgu
 
@@ -61,6 +68,11 @@ Türkiye'de çeşitli resmi verilere erişim sağlayan API'leri kullanan Android
 ![API3](https://img.shields.io/badge/Adres_Sorgu-API3-green)
 ![API4](https://img.shields.io/badge/Hane_Sorgu-API4-orange)
 ![API14](https://img.shields.io/badge/Detaylı_Adres-API14-blueviolet)
+
+> [!WARNING]
+> Adres bilgileri kişinin güvenliği açısından kritik öneme sahiptir. Yetkisiz paylaşımı 5237 sayılı TCK Madde 136'ya göre suç teşkil eder.
+>
+
 - TC ile adres bilgisi
 - Hane bilgileri
 - Detaylı adres raporu
@@ -68,37 +80,60 @@ Türkiye'de çeşitli resmi verilere erişim sağlayan API'leri kullanan Android
 ### 👨‍👩‍👧‍👦 Aile ve Akrabalık
 ![API8](https://img.shields.io/badge/Aile_Sorgu-API8-ff69b4)
 ![API9](https://img.shields.io/badge/Sülale_Sorgu-API9-9C27B0)
+
+> [!IMPORTANT]
+> Aile bilgileri özel hayatın gizliliği kapsamındadır. 5237 sayılı TCK Madde 134 uyarınca gizliliğin ihlali hapis cezası gerektirir.
+
 - Aile bireyleri bilgisi
 - Sülale ve soy bilgisi
 
 ### 📚 Eğitim Bilgileri
 ![API5](https://img.shields.io/badge/Okul_Sorgu-API5-009688)
+
+> [!CAUTION]
+> Öğrenci bilgileri MEB mevzuatı ve 6698 sayılı KVKK ile korunmaktadır.
+
 - Okul ve öğrenci bilgileri
 
 ### 💼 İş ve Meslek
 ![API6](https://img.shields.io/badge/İşyeri_Sorgu-API6-607D8B)
+
+> [!WARNING]
+> İşyeri bilgileri 4857 sayılı İş Kanunu ve KVKK kapsamında korunmaktadır.
+
 - İşyeri ve çalışma bilgileri
 
 ### 📱 İletişim Bilgileri
 ![API7](https://img.shields.io/badge/GSM_Detay-API7-2196F3)
+
+> [!DANGER]
+> GSM bilgilerinin izinsiz kullanımı 5809 sayılı Elektronik Haberleşme Kanunu'na göre yasaktır.
+
 - GSM numarası detay sorgusu
 
 ### 🚗 Ehliyet ve Belge
 ![API11](https://img.shields.io/badge/Ehliyet_Sorgu-API11-795548)
-- Ehliyet ve sürücü belgesi bilgisi
+
+> [!CAUTION]
+> Ehliyet bilgileri 2918 sayılı Karayolları Trafik Kanunu ile korunmaktadır.
 
 ### 🏡 Emlak Bilgileri
 ![API12](https://img.shields.io/badge/Tapu_Sorgu-API12-3F51B5)
-- Tapu ve mülk bilgileri
+
+> [!WARNING]
+> Tapu bilgileri 2644 sayılı Tapu Kanunu ve KVKK kapsamında korunmaktadır.
 
 ### 📷 Vesika Bilgileri
 ![API13](https://img.shields.io/badge/Vesika_Sorgu-API13-FF5722)
-- Resmi vesika ve fotoğraf bilgisi
+
+> [!IMPORTANT]
+> Vesika fotoğrafları biyometrik veri kapsamında olup KVKK Madde 6'ya göre özel koruma gerektirir.
 
 ### 🔎 Kişi Arama
 ![API2](https://img.shields.io/badge/Ad_Soyad_Arama-API2-4CAF50)
-- Ad, soyad, il ve ilçe ile kişi arama
 
+> [!NOTE]
+> Ad soyad aramalarında Türkçe karakter kullanımına ve tam eşleşme kurallarına dikkat ediniz.
 
 ## 🛠️ Teknoloji ve Özellikler
 
@@ -127,6 +162,15 @@ Türkiye'de çeşitli resmi verilere erişim sağlayan API'leri kullanan Android
 ![GitHub Forks](https://img.shields.io/github/forks/Memati8383/Ondex-API-Mobil-Game?style=social)
 ![GitHub Issues](https://img.shields.io/github/issues/Memati8383/Ondex-API-Mobil-Game)
 ![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-brightgreen)
+
+## ⚖️ Hukuki Uyarılar
+
+> [!WARNING]
+> **Uygulama Kullanım Şartları**:
+> 1. Tüm sorgular yasal çerçevede yapılmalıdır
+> 2. Veriler kötü niyetle kullanılamaz
+> 3. Yetkisiz erişim 5237 sayılı TCK Madde 243-245 kapsamında suçtur
+> 4. Veri sorumlusu olarak KVKK yükümlülüklerinizi unutmayınız
 
 ## 🚀 Özellikler
 
