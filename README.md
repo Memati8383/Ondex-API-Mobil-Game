@@ -186,24 +186,10 @@ Uygulama 3 dilde tam destek sunmaktadır:
 
 ## 🖼️ Ekran Görüntüleri
 
-<div align="center" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin: 20px 0;">
+| Ana Sayfa | Sorgu 1 Ekranı | Sorgu 2 Ekranı |
+|-----------|--------------|----------|
+| ![Main](Mainn.jpg) | ![Query1](queryy1.jpg) | ![Query2](queryy2.jpg) |
 
-<div style="flex: 1; min-width: 300px; text-align: center;">
-<h3>🏠 Ana Sayfa</h3>
-<img src="Mainn.jpg" alt="Ana Sayfa" style="max-width: 100%; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
-</div>
-
-<div style="flex: 1; min-width: 300px; text-align: center;">
-<h3>🔍 TC Sorgu Ekranı</h3>
-<img src="queryy1.jpg" alt="TC Sorgu" style="max-width: 100%; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
-</div>
-
-<div style="flex: 1; min-width: 300px; text-align: center;">
-<h3>👤 Ad-Soyad Sorgu</h3>
-<img src="queryy2.jpg" alt="Ad-Soyad Sorgu" style="max-width: 100%; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
-</div>
-
-</div>
 
 ## 👨‍💻 Geliştirici Bilgileri
 
