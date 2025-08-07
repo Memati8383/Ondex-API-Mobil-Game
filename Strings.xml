@@ -1,9 +1,9 @@
 <resources>
 
     <!-- ============ APPLICATION STRINGS ============ -->
-    <string name="app_name">ONDEX API</string>
-    <string name="app_name_en">ONDEX API</string>
-    <string name="app_name_de">ONDEX API</string>
+    <string name="app_name">MEMATI API</string>
+    <string name="app_name_en">MEMATI API</string>
+    <string name="app_name_de">MEMATI API</string>
 
     <!-- ============ MAIN MENU ITEMS ============ -->
     <!-- API Query Options -->
