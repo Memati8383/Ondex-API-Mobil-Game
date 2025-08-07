@@ -36,6 +36,34 @@ Türkiye'de çeşitli resmi verilere erişim sağlayan API'leri kullanan Android
 | API13 | Vesika Sorgu | `tc` | `https://hexnox.pro/sowix/vesika.php?tc={TC}` |
 | API14 | Adres Detay Sorgu | `tc` | `https://hexnox.pro/sowixfree/premadres.php?tc={TC}` |
 
+## 🛠️ Teknoloji ve Özellikler
+
+### 📱 Platform
+![Android](https://img.shields.io/badge/Android-3DDC84?logo=android&logoColor=white)
+![Min SDK 21](https://img.shields.io/badge/Min%20SDK-21-orange)
+![Target SDK 33](https://img.shields.io/badge/Target%20SDK-33-yellow)
+
+### 💻 Geliştirme
+![Java](https://img.shields.io/badge/Java-11-007396?logo=java&logoColor=white)
+![Android Studio](https://img.shields.io/badge/Android_Studio-2022.1-3DDC84?logo=android-studio)
+![Gradle 7.4](https://img.shields.io/badge/Gradle-7.4-02303A?logo=gradle)
+
+### 🌐 API Entegrasyonu
+![API Endpoints](https://img.shields.io/badge/Endpoints-14-blue)
+![REST API](https://img.shields.io/badge/REST-API-ff69b4)
+![JSON Format](https://img.shields.io/badge/Data-JSON-9cf)
+
+### 📦 Proje Bilgileri
+![Repo Size](https://img.shields.io/github/repo-size/Memati8383/Ondex-API-Mobil-Game)
+![Last Commit](https://img.shields.io/github/last-commit/Memati8383/Ondex-API-Mobil-Game?color=blue)
+![License](https://img.shields.io/badge/License-MIT-green)
+
+### 👥 Topluluk
+![GitHub Stars](https://img.shields.io/github/stars/Memati8383/Ondex-API-Mobil-Game?style=social)
+![GitHub Forks](https://img.shields.io/github/forks/Memati8383/Ondex-API-Mobil-Game?style=social)
+![GitHub Issues](https://img.shields.io/github/issues/Memati8383/Ondex-API-Mobil-Game)
+![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-brightgreen)
+
 ## 🚀 Özellikler
 
 <div align="center">
