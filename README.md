@@ -205,8 +205,6 @@ Uygulama 3 dilde tam destek sunmaktadır:
 
 <p>&nbsp;<img align="center" src="https://github-readme-stats.vercel.app/api?username=memati8383&show_icons=true&locale=en" alt="memati8383" /></p>
 
-<p><img align="center" src="https://github-readme-streak-stats.herokuapp.com/?user=memati8383&" alt="memati8383" /></p>
-
 ## ⚖️ Lisans Bilgisi
 
 <div style="background: #f5f5f5; padding: 20px; border-radius: 10px; border-left: 5px solid #2ecc71; margin: 20px 0;">
