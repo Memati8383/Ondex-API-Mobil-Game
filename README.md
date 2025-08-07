@@ -38,32 +38,59 @@ Türkiye'de çeşitli resmi verilere erişim sağlayan API'leri kullanan Android
 
 ## 🚀 Özellikler
 
-![Feature](https://img.shields.io/badge/-11%20Farklı%20API%20Sorgusu-red)
-![Feature](https://img.shields.io/badge/-Filtreleme%20Özelliği-orange)
-![Feature](https://img.shields.io/badge/-4%20Formatta%20Dışa%20Aktarma-green)
-![Feature](https://img.shields.io/badge/-Bildirim%20Sistemi-yellow)
-![Feature](https://img.shields.io/badge/-Çoklu%20Dil%20Desteği-blue)
+<div align="center">
 
-- **Çoklu API Desteği** - 11 farklı sorgu seçeneği
-- **Akıllı Filtreleme** - Sonuçlarda hızlı arama
+![Feature](https://img.shields.io/badge/-14%20Farklı%20API%20Sorgusu-red)
+![Feature](https://img.shields.io/badge/-Gelişmiş%20Filtreleme-orange)
+![Feature](https://img.shields.io/badge/-4%20Formatta%20Export-green)
+![Feature](https://img.shields.io/badge/-Anlık%20Bildirimler-yellow)
+![Feature](https://img.shields.io/badge/-Çoklu%20Dil-blue)
+![Feature](https://img.shields.io/badge/-Material%20Design-757575)
+![Feature](https://img.shields.io/badge/-Hızlı%20Arama-9C27B0)
+![Feature](https://img.shields.io/badge/-Kopyalama%20Desteği-009688)
+
+</div>
+
+- **Çoklu API Desteği** - 14 farklı resmi veri sorgulama seçeneği
+- **Akıllı Filtreleme** - Sonuçlarda anında arama ve filtreleme
 - **Export Özelliği** - TXT, JSON, CSV ve PDF formatlarında kayıt
-- **Bildirimler** - Sorgu sonuçları için anlık bildirim
-- **Çoklu Dil Desteği** - Çoklu Dil Desteği: Türkçe, İngilizce, Almanca
+- **Bildirim Sistemi** - Sorgu sonuçları için anlık push bildirimleri
+- **Material UI** - Modern ve kullanıcı dostu arayüz
+- **Veri Paylaşımı** - Sonuçları kolayca paylaşma özelliği
 
-## 🌍 Çoklu Dil Desteği
+## 🌍 Çoklu Dil Desteği 
 
-Uygulama 3 dilde kullanılabilir:
-- Türkçe (TR)
-- İngilizce (EN)
-- Almanca (DE) 
+![Turkish](https://img.shields.io/badge/Türkçe-TR-brightgreen)
+![English](https://img.shields.io/badge/English-EN-blue)
+![German](https://img.shields.io/badge/Deutsch-DE-yellow)
 
-## 📝 Kullanım
+Uygulama 3 dilde tam destek sunmaktadır:
+- 🇹🇷 Türkçe (Varsayılan)
+- 🇬🇧 İngilizce 
+- 🇩🇪 Almanca
+
+## 📝 Kullanım Kılavuzu
+
+![Step1](https://img.shields.io/badge/1.-Uygulamayı_Aç-4CAF50) ![Step2](https://img.shields.io/badge/2.-Sorgu_Türü_Seç-2196F3)  
+![Step3](https://img.shields.io/badge/3.-Bilgileri_Gir-FF9800) ![Step4](https://img.shields.io/badge/4.-Sorgula-F44336)  
+![Step5](https://img.shields.io/badge/5.-Sonuçları_İncele-9C27B0) ![Step6](https://img.shields.io/badge/6.-Dışa_Aktar-607D8B)
 
 1. Uygulamayı başlatın
-2. Menüden sorgu türünü seçin
-3. Gerekli bilgileri girin
-4. "Sorgula" butonuna basın
-5. Sonuçları inceleyin veya dışa aktarın
+2. Menüden istediğiniz sorgu türünü seçin
+3. Gerekli bilgileri ilgili alanlara girin
+4. "Sorgula" butonuna basarak işlemi başlatın
+5. Gelen sonuçları detaylı şekilde inceleyin
+6. İsterseniz sonuçları 4 farklı formatta dışa aktarın
+
+## ⚠️ Güvenlik & Gizlilik
+
+![Security](https://img.shields.io/badge/SSL_Şifreleme-Aktif-brightgreen)
+![Privacy](https://img.shields.io/badge/Kişisel_Veriler-Güvende-important)
+![Compliance](https://img.shields.io/badge/KVKK_Uyumlu-Yes-blue)
+
+- Tüm API bağlantıları SSL şifreleme ile korunmaktadır
+- Kişisel veriler cihazda şifrelenerek saklanır
+- KVKK ve GDPR uyumludur
 
 ## 🖼️ Ekran Görüntüleri
 
