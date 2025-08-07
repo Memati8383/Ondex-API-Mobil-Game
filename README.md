@@ -49,6 +49,57 @@ Türkiye'de çeşitli resmi verilere erişim sağlayan API'leri kullanan Android
 | API13 | Vesika Sorgu | `tc` | `https://hexnox.pro/sowix/vesika.php?tc={TC}` |
 | API14 | Adres Detay Sorgu | `tc` | `https://hexnox.pro/sowixfree/premadres.php?tc={TC}` |
 
+## 🔍 API Kategorileri
+
+### 🆔 Kimlik Bilgileri
+![API1](https://img.shields.io/badge/TC_Kimlik_Sorgu-API1-red) 
+![API10](https://img.shields.io/badge/TC/GSM_Sorgu-API10-blue)
+- TC Kimlik No ile temel bilgiler
+- TC veya GSM numarası ile çoklu sorgu
+
+### 🏠 Adres Bilgileri
+![API3](https://img.shields.io/badge/Adres_Sorgu-API3-green)
+![API4](https://img.shields.io/badge/Hane_Sorgu-API4-orange)
+![API14](https://img.shields.io/badge/Detaylı_Adres-API14-blueviolet)
+- TC ile adres bilgisi
+- Hane bilgileri
+- Detaylı adres raporu
+
+### 👨‍👩‍👧‍👦 Aile ve Akrabalık
+![API8](https://img.shields.io/badge/Aile_Sorgu-API8-ff69b4)
+![API9](https://img.shields.io/badge/Sülale_Sorgu-API9-9C27B0)
+- Aile bireyleri bilgisi
+- Sülale ve soy bilgisi
+
+### 📚 Eğitim Bilgileri
+![API5](https://img.shields.io/badge/Okul_Sorgu-API5-009688)
+- Okul ve öğrenci bilgileri
+
+### 💼 İş ve Meslek
+![API6](https://img.shields.io/badge/İşyeri_Sorgu-API6-607D8B)
+- İşyeri ve çalışma bilgileri
+
+### 📱 İletişim Bilgileri
+![API7](https://img.shields.io/badge/GSM_Detay-API7-2196F3)
+- GSM numarası detay sorgusu
+
+### 🚗 Ehliyet ve Belge
+![API11](https://img.shields.io/badge/Ehliyet_Sorgu-API11-795548)
+- Ehliyet ve sürücü belgesi bilgisi
+
+### 🏡 Emlak Bilgileri
+![API12](https://img.shields.io/badge/Tapu_Sorgu-API12-3F51B5)
+- Tapu ve mülk bilgileri
+
+### 📷 Vesika Bilgileri
+![API13](https://img.shields.io/badge/Vesika_Sorgu-API13-FF5722)
+- Resmi vesika ve fotoğraf bilgisi
+
+### 🔎 Kişi Arama
+![API2](https://img.shields.io/badge/Ad_Soyad_Arama-API2-4CAF50)
+- Ad, soyad, il ve ilçe ile kişi arama
+
+
 ## 🛠️ Teknoloji ve Özellikler
 
 ### 📱 Platform
