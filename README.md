@@ -17,21 +17,24 @@
 
 Türkiye'de çeşitli resmi verilere erişim sağlayan API'leri kullanan Android uygulaması.
 
-## 📌 API Endpointleri
+## 🚀 API Endpointleri
 
-| API No | Açıklama | Endpoint |
-|--------|----------|----------|
-| API1 | TC Kimlik No ile Sorgu | `https://api.ondex.uk/ondexapi/tcprosorgu.php?tc={TC}` |
-| API2 | Ad-Soyad-İl-İlçe ile Sorgu | `https://api.ondex.uk/ondexapi/adsoyadprosorgu.php?ad={AD}&soyad={SOYAD}&il={IL}&ilce={ILCE}` |
-| API3 | TC ile Adres Sorgulama | `https://api.ondex.uk/ondexapi/adressorgu.php?tc={TC}` |
-| API4 | TC ile Hane Sorgulama | `https://api.ondex.uk/ondexapi/hanesorgu.php?tc={TC}` |
-| API5 | TC ile Apartman Sorgulama | `https://api.ondex.uk/ondexapi/apartmansorgu.php?tc={TC}` |
-| API6 | TC ile Sokak Sorgulama | `https://api.ondex.uk/ondexapi/sokaksorgu.php?tc={TC}` |
-| API7 | TC ile Mahalle Sorgulama | `https://api.ondex.uk/ondexapi/mahallesorgu.php?tc={TC}` |
-| API8 | TC ile Aile Sorgusu | `https://api.ondex.uk/ondexapi/aileprosorgu.php?tc={TC}` |
-| API9 | TC ile Sülale Sorgusu | `https://api.ondex.uk/ondexapi/sulaleprosorgu.php?tc={TC}` |
-| API10 | TC/GSM ile Sorgu | `https://api.ondex.uk/ondexapi/tcgsmsorgu.php?tc={TC}` veya `https://api.ondex.uk/ondexapi/gsmtcsorgu.php?gsm={GSM}` |
-| API11 | TC ile İş Yeri Sorgusu | `https://api.ondex.uk/ondexapi/isyerisorgu.php?tc={TC}` |
+| API No | Açıklama | Parametreler | Endpoint |
+|--------|----------|--------------|----------|
+| API1 | TC Kimlik Sorgu | `tc` | `https://api.hexnox.pro/sowixapi/tcpro.php?tc={TC}` |
+| API2 | Ad-Soyad Sorgu | `ad`, `soyad`, `il`, `ilce` | `https://api.hexnox.pro/sowixapi/adsoyadilce.php?ad={AD}&soyad={SOYAD}&il={IL}&ilce={ILCE}` |
+| API3 | Adres Sorgu | `tc` | `https://api.hexnox.pro/sowixapi/adres.php?tc={TC}` |
+| API4 | Hane Sorgu | `tc` | `https://api.hexnox.pro/sowixapi/hane.php?tc={TC}` |
+| API5 | Okul No Sorgu | `tc` | `https://api.hexnox.pro/sowixapi/okulno.php?tc={TC}` |
+| API6 | İşyeri Sorgu | `tc` | `https://api.hexnox.pro/sowixapi/isyeri.php?tc={TC}` |
+| API7 | GSM Detay Sorgu | `gsm` | `https://api.hexnox.pro/sowixapi/gsmdetay.php?gsm={GSM}` |
+| API8 | Aile Sorgu | `tc` | `https://api.hexnox.pro/sowixapi/aile.php?tc={TC}` |
+| API9 | Sülale Sorgu | `tc` | `https://api.hexnox.pro/sowixapi/sulale.php?tc={TC}` |
+| API10 | TC/GSM Sorgu | `tc` veya `gsm` | `https://api.hexnox.pro/sowixapi/tcgsm.php?tc={TC}` veya `https://api.hexnox.pro/sowixapi/gsm.php?gsm={GSM}` |
+| API11 | Ehliyet Sorgu | `tc` | `http://api.hexnox.pro/sowixapi/ehlt.php?tc={TC}` |
+| API12 | Tapu Sorgu | `tc` | `https://api.hexnox.pro/sowixapi/tapu.php?tc={TC}` |
+| API13 | Vesika Sorgu | `tc` | `https://hexnox.pro/sowix/vesika.php?tc={TC}` |
+| API14 | Adres Detay Sorgu | `tc` | `https://hexnox.pro/sowixfree/premadres.php?tc={TC}` |
 
 ## 🚀 Özellikler
 
@@ -46,6 +49,21 @@ Türkiye'de çeşitli resmi verilere erişim sağlayan API'leri kullanan Android
 - **Export Özelliği** - TXT, JSON, CSV ve PDF formatlarında kayıt
 - **Bildirimler** - Sorgu sonuçları için anlık bildirim
 - **Çoklu Dil Desteği** - Çoklu Dil Desteği: Türkçe, İngilizce, Almanca
+
+## 🌍 Çoklu Dil Desteği
+
+Uygulama 3 dilde kullanılabilir:
+- Türkçe (TR)
+- İngilizce (EN)
+- Almanca (DE) 
+
+## 📝 Kullanım
+
+1. Uygulamayı başlatın
+2. Menüden sorgu türünü seçin
+3. Gerekli bilgileri girin
+4. "Sorgula" butonuna basın
+5. Sonuçları inceleyin veya dışa aktarın
 
 ## 🖼️ Ekran Görüntüleri
 
