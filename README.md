@@ -201,11 +201,6 @@ Uygulama 3 dilde tam destek sunmaktadır:
 
 </div>
 
-<p><img align="left" src="https://github-readme-stats.vercel.app/api/top-langs?username=memati8383&show_icons=true&locale=en&layout=compact" alt="memati8383" /></p>
-
-<p>&nbsp;<img align="center" src="https://github-readme-stats.vercel.app/api?username=memati8383&show_icons=true&locale=en" alt="memati8383" /></p>
-
-
 # 📊 GitHub Stats:
 ![](https://github-readme-stats.vercel.app/api?username=Memati8383&theme=dark&hide_border=false&include_all_commits=true&count_private=true)<br/>
 ![](https://nirzak-streak-stats.vercel.app/?user=Memati8383&theme=dark&hide_border=false)<br/>
