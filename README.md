@@ -186,19 +186,48 @@ Uygulama 3 dilde tam destek sunmaktadır:
 
 ## 🖼️ Ekran Görüntüleri
 
-| Ana Sayfa | Sorgu 1 Ekranı | Sorgu 2 Ekranı |
-|-----------|--------------|----------|
-| ![Main](Mainn.jpg) | ![Query1](queryy1.jpg) | ![Query2](queryy2.jpg) |
+<div align="center" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin: 20px 0;">
 
-## 👨‍💻 Geliştirici
+<div style="flex: 1; min-width: 300px; text-align: center;">
+<h3>🏠 Ana Sayfa</h3>
+<img src="Mainn.jpg" alt="Ana Sayfa" style="max-width: 100%; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+</div>
 
-[![GitHub](https://img.shields.io/badge/GitHub-Memati8383-black?logo=github)](https://github.com/Memati8383)
-[![Instagram](https://img.shields.io/badge/Instagram-ferit22901-E4405F?logo=instagram)](https://instagram.com/ferit22901)
-[![Email](https://img.shields.io/badge/Email-akdemirferit%40gmail.com-red?logo=gmail)](mailto:akdemirferit@gmail.com)
+<div style="flex: 1; min-width: 300px; text-align: center;">
+<h3>🔍 TC Sorgu Ekranı</h3>
+<img src="queryy1.jpg" alt="TC Sorgu" style="max-width: 100%; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+</div>
 
-## ⚖️ Lisans
+<div style="flex: 1; min-width: 300px; text-align: center;">
+<h3>👤 Ad-Soyad Sorgu</h3>
+<img src="queryy2.jpg" alt="Ad-Soyad Sorgu" style="max-width: 100%; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+</div>
+
+</div>
+
+## 👨‍💻 Geliştirici Bilgileri
+
+<div align="center" style="margin: 30px 0;">
+
+[![GitHub Profile](https://img.shields.io/badge/%20-Memati8383-black?logo=github&style=for-the-badge&logoColor=white)](https://github.com/Memati8383)
+[![Instagram Profile](https://img.shields.io/badge/%20-@ferit22901-E4405F?logo=instagram&style=for-the-badge&logoColor=white)](https://instagram.com/ferit22901)
+[![Email Contact](https://img.shields.io/badge/%20-akdemirferit@gmail.com-D14836?logo=gmail&style=for-the-badge&logoColor=white)](mailto:akdemirferit@gmail.com)
+
+</div>
+
+## ⚖️ Lisans Bilgisi
+
+<div style="background: #f5f5f5; padding: 20px; border-radius: 10px; border-left: 5px solid #2ecc71; margin: 20px 0;">
 
 ```text
 MIT License
-Copyright (c) 2025 Memati8383
+
+Copyright (c) 2025 Ferit Akdemir
+
+Bu lisans, bu yazılımın kopyalarını alan herkese ücretsiz olarak,
+yazılım ve ilgili belgeler ("Yazılım") üzerinde sınırsız kullanım hakkı verir.
+Yazılımın kopyalarını düzenleme, birleştirme, yayımlama, dağıtma,
+alt lisanslama ve/veya satma hakkı da dahil olmak üzere,
+Yazılımla ilgili tüm haklar saklıdır.
 ```
+</div>
